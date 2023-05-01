@@ -25,3 +25,5 @@ In such a setting, we immerse ourselves in the material for three days to get pl
 The structure which I present above assumes thirty-six hours of learning in total. That is not a lot - I've been working with Azure for almost a decade and still learn things I did not know before. But I don't want to discourage you - if you don't use something, you will have little chance of learning it. That's why we'll spend much time implementing things, not looking at PowerPoint slides.
 
 The course is designed to give you as much helpful knowledge as possible within a limited time. It will show you what's out there, when to use which service, and what pitfalls to watch out for. But if you start working with a Customer, you will find yourself returning to the documentation frequently. Still, please remember that if you have no prior Azure experience, this time is too little to become a skilled cloud engineer. Similarly, if you aim to get certified, you will still need to invest time in learning and practicing. 
+
+####  [<- Home](README.md) | [Part 0 - How to Prepare ->](Content/Prepare.md)
