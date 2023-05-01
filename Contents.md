@@ -2,14 +2,14 @@
 
 ## What will you learn
 
-- [How to Prepare](howToPrepare.md)
-- [Getting Started with Azure (6h)](Part1/partOneIndex.md)
-- Running Basic IaaS (6h)
-- Making our stuff Manageable (6h)
-- Let's talk Storage (6h)
-- PaaS is where the fun begins (3h)
-- Migrating to Azure (3h)
-- Taking our Network all the way to 11 (6+h)
+* [How to Prepare](Content/Prepare.md)
+* [Getting Started with Azure (6h)](Content/Part1/partOneIndex.md)
+* Running Basic IaaS (6h)
+* Making our stuff Manageable (6h)
+* Let's talk Storage (6h)
+* PaaS is where the fun begins (3h)
+* Migrating to Azure (3h)
+* Taking our Network all the way to 11 (6+h)
 
 ## How to structure your learning
 

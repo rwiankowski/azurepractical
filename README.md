@@ -6,7 +6,7 @@
 
 Welcome to the Azure Practical Training! If this is your first time coming here, please familiarise yourself with the information below. If you're a returning user, or using this as part of an instructor-led course, feel free to jump directly to the: 
 
-### [Table Of Contents](tableOfContents.md)
+### [Table Of Contents](Contents.md)
 
 ## Objectives
 
