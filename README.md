@@ -1,7 +1,3 @@
-# Azure Practical Training
-
-**DISCLAIMER - this is not an Official Microsoft Learn site. The theme will be adjusted to avoid such misunderatandings**
-
 ## Welcome
 
 Welcome to the Azure Practical Training! If this is your first time coming here, please familiarise yourself with the information below. If you're a returning user, or using this as part of an instructor-led course, feel free to jump directly to the: 
