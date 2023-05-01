@@ -2,7 +2,7 @@
 
 ## What will you learn
 
-- [Getting Started with Azure (6h)](./Part1/partOneIndex.md)
+- [Getting Started with Azure (6h)](Part1/partOneIndex.md)
 - Running Basic IaaS (6h)
 - Making our stuff Manageable (6h)
 - Let's talk Storage (6h)
