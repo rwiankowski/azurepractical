@@ -8,6 +8,39 @@ According to Microsoft:
 
 But in plain English, I would say Azure is the public cloud offering from Microsoft that provides a wide range of IaaS (Infrastructure-as-a-Service) and PaaS (Platform-as-a-Service) services, which allow you to run almost any application or IT workload. 
 
+## Buying Azure
+
+I promised we would learn by doing, so let's start by getting yourself some Azure. The table below describes the options we have to procure Azure Subscriptions.
+
+| Acronym | Model | Setup | Discounts |
+|---------|-------|-------|-----------|
+| - | Free | Complimentaty account | 200$ USD credits for 30 days + limited free access for 12 months |
+| PAYG | Pay-As-You-Go | Sign-up online with a Credit Card | None, publicly availabile list prices apply |
+| CSP | Cloud Solutions Privider | Buy via a Microsoft Partner | Negotiated with the CSP partner, typicvally limited |
+| EA | Enterprise Account | Buy directly from Microsoft | Negotiated with Mictosoft and based on the total value of the commitment, can be significant |
+
+There are also specific programs and incentives for educational use. For example, the Student subscription gives 100 USD for 12 months.
+
+While we always buy the same Azure, no matter how we purchase, specific options and possibilities will vary based on the channel you use to purchase your Azure Subscriptions. For example, the workflow for creating new Subscriptions works differently - with EA, you can easily deploy them using Infra-as-Code templates; in CSP, that is not a feasible option.
+
+### Exercise 1.1.1
+
+Let's put that new knowledge to use and set up the Azure environment you will use for learning. 
+
+By default, we will use the Free tier for our learning purposes. The credits you get from Microsoft should be sufficient
+to complete all exercises, and the 30-day limit should provide a motivating sense of urgency. You might use the Azure Pass in a classroom setting, but I will keep assuming that we process with the free offering in the instructions.
+
+I strongly recommend creating a brand new Microsoft account for whichever option we use, Free Account or Azure Pass. You might already have one, and it might even be eligible for the free tier. However, we will be configuring tenant-level policies in some exercises, and you could lock yourself out. To stay safe, I advise having a dedicated account for learning. 
+
+1. Use a private browser window - we want to ensure you don't sign up with an existing Microsoft or a Work/School account.
+2. Go to the [Azure website](https://azure.microsoft.com/)
+3. Select "Start for Free" and then "Start Free."
+4. On the Sign In page, you'll find a small print "No account? Create one!"
+5. Use the option to create a new account, and in the following step, choose "Get a new email address."
+6. Select an alias, set a password, and complete the process of getting a free Azure Subscription.
+7. Once the process completes, you should be redirected to the Azure Portal.
+8. Go to Subscriptions to verify whether your Azure Pass was redeemed successfully. If you see a subscription, you're good to start your labs!
+
 ## How is Azure structured
 
 There are three dimensions to Azure:
@@ -26,7 +59,7 @@ What most of us use (probably without realising) is the public version of Micros
 
 All four clouds are entirely separate, with different management APIs and identity services used to grant access. 
 
-### The physical topology of Azure
+### Geographical Locations
 
 #### Regions
 An Azure Region is the primary unit of consideration when discussing geographical location. A region represents a collection of data center facilities and ensures data residency. 
@@ -76,7 +109,7 @@ Considering Geographies, Regions, and Availability Zones, we see that we can ach
 
 ![Regions and Availability Zones Combined](Images/availability-zones-region-geography.png)
 
-### Logical structure of Azure
+### The Logical Structure
 
 #### The Management Hierarchy
 
@@ -122,6 +155,16 @@ We will dive deeper into all three concepts later in this course If this doesn't
 - Every Resource also must be deployed to an Azure Region, but this region does not to be the same as the region of the Resource Group. You can deploy the Resource Group to West Europe (to keep the metadata with the EU) and deploy child Resources to East US (because that's where your users are located). However, I prefer to align the Resource Groups and child Resources locations. I will soon show you why.
 - Most importantly - **Resource Groups should hold together Resources that share the lifecycle.** That is, they are created, updated, and destroyed together. For example, if you have an application consisting of a web front end and a relational database, both components belong in different Resource Groups. You will probably update the front end much more often and might even choose to replace it with something completely new. But your database will likely remain as is or see only minor schema updates. 
 
+### Exercise 1.1.2
+
+While optional, Management Groups are a fantastic tool for controlling your growing cloud environment. The Azure Free tier only provides a single Azure Subscription, but that shouldn't stop us from learning how Management Groups work.
+
+1. If you're not logged into the Azure Portal, please do so. 
+    - Be sure to use the new Microsoft Account you created while signing up for Azure.
+2. Enable Management Groups in your environment
+    - Go to Management Groups in the Azure Portal and start using them
+    - Pick any id/name for your first group.
+3. Move Your Azure Subscription to the new Management Group
 ## Naming and Tagging
 
 Naming and Tagging play a crucial role in the governance of any cloud environment, and Azure is no Exception. While there is no single way of approaching both topics, it is imperative to include them in your design considerations and implement your designs consistently. 
@@ -145,37 +188,7 @@ My favourite examples of how to use tags focus on automation:
 - Deploying updates in batches.
 - Configuring backup strategies. 
 
-## Buying Azure
 
-In the final section of this chapter, we will look at the many ways one can procure Azure. 
-
-| Acronym | Model | Setup | Discounts |
-|---------|-------|-------|-----------|
-| - | Free | Complimentaty account | 200$ USD credits for 30 days + limited free access for 12 months |
-| PAYG | Pay-As-You-Go | Sign-up online with a Credit Card | None, publicly availabile list prices apply |
-| CSP | Cloud Solutions Privider | Buy via a Microsoft Partner | Negotiated with the CSP partner, typicvally limited |
-| EA | Enterprise Account | Buy directly from Microsoft | Negotiated with Mictosoft and based on the total value of the commitment, can be significant |
-
-There are also specific programs and incentives for educational use. For example, the Student subscription gives 100 USD for 12 months.
-
-While we always buy the same Azure, no matter how we purchase, specific options and possibilities will vary based on the channel you use to purchase your Azure Subscriptions. For example, the workflow for creating new Subscriptions works differently - with EA, you can easily deploy them using Infra-as-Code templates; in CSP, that is not a feasible option.
-## Excercises
-
-Now that you know how Azure is organised, it is time to set up the Azure environment that you will use for learning. 
-
-By default, we will use the Free tier for our learning purposes. The credits you get from Microsoft should be sufficient
-to complete all exercises, and the 30-day limit should provide a motivating sense of urgency. You might use the Azure Pass in a classroom setting, but I will keep assuming that we process with the free offering in the instructions.
-
-I strongly recommend creating a brand new Microsoft account for whichever option we use, Free Account or Azure Pass. You might already have one, and it might even be eligible for the free tier. However, we will be configuring tenant-level policies in some exercises, and you could lock yourself out. To stay safe, I advise having a dedicated account for learning. 
-
-1. Use a private browser window - we want to ensure you don't sign up with an existing Microsoft or a Work/School account.
-2. Go to the [Azure website](https://azure.microsoft.com/)
-3. Select "Start for Free" and then "Start Free"
-4. On the Sign In page you'll find a small print "No account? Create one!"
-5. Use the option to create a new account, and in the following step, choose "Get a new email address".
-6. Select an alias, set a password, and complete the process of getting a free Azure Subscription.
-7. Once the process completes, you should be redirected to the Azure Portal.
-8. Go to Subscriptions to verify whether your Azure Pass was redeemed successfully. If you see a subscription, you're good to start your labs!
 
 
 [<- Part 1 - Getting Started with Azure](partOneIndex.md) | [1.2 - Azure Active Directory ->](azureActiveDirectory.md)
