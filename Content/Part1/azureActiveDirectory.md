@@ -190,7 +190,7 @@ I exclude a sandbox tenant you might use individually or in a shared setup with 
 
 ### Azure AD Business-to-Business Collaboration
 
-When you do end up having multiple tenants, you could keep them completely isolated and create the same set of user accounts (and potentially groups) in every one of them, but that would be very impractical. Also, you would eventually face configuration drift and potentially expose security vulnerabilities.
+When you end up having multiple tenants, you could keep them completely isolated and create duplicate user accounts (and potentially groups) in every one of them, but that would be impractical. Also, you would eventually face configuration drift and potentially expose security vulnerabilities.
 
 You can use the Azure AD Business to Business (Azure AD B2B) collaboration to mitigate this challenge. The service allows us to invite an Azure AD account from one tenant as a guest user in another tenant. If you remember Guest Users from earlier in this chapter, that was Azure AD B2B.
 When you invite an external account into your tenant, your directory only stores a reference (pointer) to the Azure AD account in another tenant. When the user tries to authenticate, they are redirected to their home tenant, and once they obtain an authentication token, they are redirected back and authorised.
@@ -201,7 +201,24 @@ This service also works great when you want to give users from partner organisat
 
 ### Azure AD Busines to Customer
 
+Azure also offers a Business to Customer service (Azure AD B2C), but the name can be misleading. After learning about B2B, you might expect similar behaviour, but that is not the case. To use Azure AD B2C, you create a new, particular type of Azure AD tenant. That tenant is used solely to manage end-customer identities and their access to your applications. 
 
+Azure AD B2C offers a wide range of handy features that allow you to:
+- integrate with external user stores,
+- provide single sign-on access with a user-provided identity,
+- create a custom-branded identity solution,
+- use policies to configure user journeys,
+- use progressive profiling to collect user information gradually,
+- pass user data to a 3rd party for validation.
+
+
+### Exercise 1.2.3
+
+Until now, you've been working with your Azure environment using the default administrator account, and we already established that it is not a good practice. I also promised that we would fix that issue soon, and the time is now.
+
+1. Version A - If you have an Azure AD work or school account that you use daily, invite your user to the tenant oy created for learning purposes
+1. Version B - If you don't have an existing work or school account, create a new named user in your new tenant.
+2. Check whether you can log into the new tenant using your existing (version A) or new (version B) account.
 
 ## Azure AD Security
 
