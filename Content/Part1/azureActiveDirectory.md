@@ -1,10 +1,14 @@
 # 1.2 - Azure Active Directory
 
-Azure starts with Azure Active Directory (which we often call AzureAD or simply use the acronym AAD), there is no other way. Even if you want to use a third-party identity management solution like Okta, you will still need to use AzureAD in between. So you have no option - you must get to know it well. 
+Azure starts with Azure Active Directory (which we often call AzureAD or simply use the acronym AAD), there is no other way. Even if you want to use a third-party identity management solution like Okta, you will still need to use Azure AD in between. So you have no option - you must get to know it well. 
 
 ## What is Azure Active Directory
 
-AAD is a Software-as-a-Service (SaaS) enterprise identity management solution. It is a cloud-based and multitenant service that offers authentication and authorisation capabilities complemented by a wide range of advanced security, collaboration, and other features. 
+AAD is a Software-as-a-Service (SaaS) enterprise Identity and Access Management (IAM) solution. It is a cloud-based and multitenant service that offers:
+- authentication - it verifies users' identities and issues access tokens,
+- authorisation - it verifies users' access permissions to Enterprise Applications, which can be published via AAD.
+
+A wide range of advanced security, collaboration, and other features complements the core identity and access capabilities. 
 
 The name of the service is, however, misleading. While we cannot use Azure without Azure AD, AAD is not a part of Azure, and many customers use it without ever thinking of deploying any Azure Resources. Azure Active Directory is also the backbone of other cloud-based services offered by Microsoft, like Microsoft 365 and Dynamics 365. 
 
@@ -55,6 +59,7 @@ While Azure Active Directory (AAD) takes its name from Windows Server Active Dir
 | Queried using | REST API over HTTP | LDAP |
 | Authentication protocol(s) | SAML, WS-Fed, OpenID Connect, OAuth | Kerberos |
 | Single Sign-On | Native | Requires AD FS |
+
 
 Like with WS AD, users' devices can authenticate to Azure AD. However, the situation is slightly more complex, as we have several models available:
 
@@ -137,15 +142,66 @@ I previously mentioned that Azure AD has a flat hierarchy and does not support O
 
 AUs can be used to group  Users, Groups, and Devices to delegate administrative tasks. That is both a lot and not enough at the same time - AUs cannot be nested (Azure AD is still flat) and support only certain permissions sets for administrators. Many permissions can only be scoped to the entire tenant.
 
-*Important  - You will need and Azure AD P1 license for every AU administrator. AU members can have a free license.*
+*Important  - You will need an Azure AD P1 license for every AU administrator. AU members can have a free license.*
 
 ## Application Service Identities
 
+If you have experience working in a Windows Server environment, the concept of a service account shouldn't feel foreign. Working with applications that relied on Active Directory, we would create a regular domain user. Then, instead of giving it a human name, we would follow the naming convention for a service account and run a service in the context of that security principal. This way, we could permit that service to access file shares, databases, and other resources.
+
+In Azure, we use different mechanisms. We will look at them in the following sections.
+
 ### Service Principals
+
+The first option is to use Service Principals (SPNs), which you can find in the Azure portal under App Registrations. An APN is an Azure AD identity that an application can use (can be external) to authenticate to Azure resources. The authentication can use a secret (password) or a certificate.
+
+In the simplest scenario, once you've imported the correct library into your source code, you need to pass the SPN ObjectId and the secret value to the application, and it can authenticate against Azure AD.
 
 ### Managed Identities
 
+Service Principals work well and are pretty easy to use, but they come with a significant drawback - they leave you with the responsibility of generating, securing, and managing credentials. In a growing environment, that task can become an impactful burden. But, thankfully, Managed Identities come to the rescue.
+
+A Managed Identity is an Azure AD Service Principal managed by Azure. This short sentence you just read can take a few moments to sink in, but is of great importance. As you hopefully remember, Azure AD is not Azure, and Managed Identities are one of the few places where they blend.
+
+A Managed Identity can be associated with an Azure Resource and used by that resource to access a target that supports Azure AD authentication and Azure RBAC. For example, we can assign it to a Function App and give it permission to a Storage Account. However, we never touch its credentials throughout this process and the remainder of the identity's lifecycle. Those are generated and periodically rotated by Azure.
+
+
+Managed Identities come in two flavours, and both have their use cases. The table below provides a comprehensive overview:
+
+| Property | System-assigned managed identity | User-assigned managed identity |
+| --- | --- | --- |
+| Creation | Created as part of an Azure resource | Created as a stand-alone Azure resource |
+| Life cycle | Shared life cycle with the Azure resource | Independent life cycle<br>Must be explicitly deleted |
+| Sharing across Azure resources | Cannot be shared<br>Can only be associated with a single Azure resource | Can be shared<br>Can be associated with more than one Azure resource |
+| Common use cases | Workloads that are contained within a single Azure resource<br>For example, an application that runs on a single virtual machine | Workloads that run on multiple resources and which can share a single identity<br>Workloads that need pre-authorization to a secure resource as part of a provisioning flow.<br>Workloads where resources are recycled frequently, but permissions should stay consistent. |
+
 ## Multi-Domain Setup
+
+Microsoft will (almost) always recommend having only a single Azure AD tenant. They have good reasons to provide such recommendations, and in many cases, I agree that it's the best option. But there are situations in which you might need to use several AAD domains.
+
+Those special situations include the following:
+- As part of a regulatory compliance framework, you need to separate the tenant of your production environment from any non-production environments
+- You work for a globally distributed enterprise, and data residency laws require storing data within a specific geographical region. 
+- You plan on outsourcing parts of your IT landscape to a 3rd party and want to retain a clear separation of duties. Remember - Azure AD has a flat structure, and some permissions can only be granted on the scope of the entire directory. AUs help with some things but often aren't enough.
+- You work for a managed service provider and must use a separate tenant for each customer.
+
+I exclude a sandbox tenant you might use individually or in a shared setup with a limited group to learn and try new features and services. That is an extra one for the considerations above.
+
+*Important - If you choose or are forced to use a multi-tenant setup, I strongly recommend keeping the number of directories to the minimum and paying particular attention to securing each one with adequate measures. Each of those tenants is a liability!*
+
+### Azure AD Business-to-Business Collaboration
+
+When you do end up having multiple tenants, you could keep them completely isolated and create the same set of user accounts (and potentially groups) in every one of them, but that would be very impractical. Also, you would eventually face configuration drift and potentially expose security vulnerabilities.
+
+You can use the Azure AD Business to Business (Azure AD B2B) collaboration to mitigate this challenge. The service allows us to invite an Azure AD account from one tenant as a guest user in another tenant. If you remember Guest Users from earlier in this chapter, that was Azure AD B2B.
+When you invite an external account into your tenant, your directory only stores a reference (pointer) to the Azure AD account in another tenant. When the user tries to authenticate, they are redirected to their home tenant, and once they obtain an authentication token, they are redirected back and authorised.
+
+As a result, you can use a single Azure AD account to access multiple Azure AD tenants. 
+
+This service also works great when you want to give users from partner organisations access (like vendors and service providers) to a part of your Azure environment. Instead of creating (and managing) Azure AD accounts for them, you can invite them and let them use their existing identities. 
+
+### Azure AD Busines to Customer
+
+
 
 ## Azure AD Security
 
