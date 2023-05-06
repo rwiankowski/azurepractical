@@ -172,7 +172,7 @@ Naming and Tagging play a crucial role in the governance of any cloud environmen
 ### Naming
 As one of the industry's legends quickly reminds us, creating a good naming convention is among the most challenging tasks an IT professional must tackle. At the same time, as experience teaches us, it doesn't matter how it looks; what matters most is that you have one and stick to it. 
 Therefore, I recommend you resist spending several weeks inventing the perfect naming convention. Instead, make sure that it does the following:
-- Allows the users to quickly and easily identify the resources they are looking for,
+- allows the users to quickly and easily identify the resources they are looking for,
 - complies with the requirements set by the platform regarding uniqueness and character limits,
 - provides room and flexibility for exceptions,
 - supports automation mechanisms (for example, by using consistent delimiters).
@@ -188,7 +188,72 @@ My favourite examples of how to use tags focus on automation:
 - Deploying updates in batches.
 - Configuring backup strategies. 
 
+## Azure RBAC
 
+Finally, we must discuss assigning permissions to complete the topic of governance. In Azure, we use Role-Based Access Control (RBAC) to define access rights. It provides fine-grained access management of resources in Azure​, thus allowing you to segregate duties within the organisation.
+
+### How RBAC works
+
+Let's first describe how you implement RBAC, and then I'll explain what the different terms mean:
+
+>You create an *assignment* of a *role definition* to a *security principal* at a particular *scope*.
+
+In simpler words, we define who, what, and where. 
+
+- Scope - a boundary for the level of access that is required. As I mentioned, anything from the Management Groups, through Subscriptions and Resource Groups down to individual resources, can be a scope of an RBAC assignment.
+- Security Principal - An object representing an entity requesting access to resources. If that sounds vague, please hold on to your questions as we will dive deeper into this topic in the next chapter.
+- Role Definition - Collection of permissions that lists the operations that can be performed. 
+- Assignment - the process of attaching a role definition at a selected scope. 
+
+### Role Definitions
+
+The Azure platform comes with a very long and ever-growing list of RBAC role definitions, but you can also create custom ones if none of the built-in options meet your needs.
+
+*IMPORTANT - Be very cautious about creating custom RBAC roles. They remain your responsibility and require periodic reviews.*
+
+In the long list of role definitions, there are three fundamental ones:
+- Reader - Allows reading all information about Azure Resources
+- Contributor - Allows reading, creating, managing, and deleting Azure Resources
+- Owner - Extents the Contributor role by granting rights to set permissions on Azure Resources
+
+These three generic roles include all types of resources, but there are also resource-specific roles, for example Network Contributor, which should be rather self-explanatory. 
+
+Every Role Definition indicates which actions are allowed or not for a chosen Resouce Provider (for now, think resource type, we will dive deeper into the topic later).
+
+![The design or RBAC Role Definitions](Images/azureRbacRolespng.png)
+
+*IMPORTANT - "Actions" and "NotActions" apply to the management plane, that is, the configuration of Azure resources. "DataActions" apply to the data plane, representing data stored within the resources, such as BLOBs stored in a Storage Account. Be careful when you only want to grant access to the management plane and not the data plane, or the other way around*
+
+You can find the complete list of built-in Azure RBAC Role Definitions in the [official documentation from Microsoft](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles).
+
+### Assignments
+
+Most RBAC assignments (called "Role Assignments") are intended to allow a security principal to perform a set of actions over the selected scope. 
+
+You can easily check the status of RBAC by navigating to the "Access Control (IAM)" section of a chosen scope in the Azure Portal. You will find the same interface on all levels of the management hierarchy.
+
+![RBAC in the Azure Portal](Images/azureRbac.png)
+
+Azure also supports "Deny Assignments," which attach a set of deny actions to a security principal at a particular scope to deny access.
+
+You do, however, need to keep a few critical facts in mind:
+-  Deny assignments are currently read-only and are set by Azure Blueprints and Azure Managed Apps.
+- Deny assignments block users from performing specified actions even if a role assignment grants them access.
+- Deny assignments take precedence over role assignments.
+
+
+### Recommendations for Azure RBAC
+
+Microsoft's recommendations for RBAC include the following:
+- Grant only the access to users that they need to perform their jobs​.
+- Assign at the highest scope level that meets the requirements
+- Assign roles to groups, not users
+- Know when to create a custom role
+- Consider what happens if you have overlapping role assignments
+
+Keep those in mind for the exams, but also be mindful that this advice works best in organisations that use functional silos. 
+
+When your environment consists of cross-functional DevOps teams, I would instead give the entire group Contributor rights on the Management Group or Subscription dedicated to the application/workload managed by the team. This way, everyone can fix an issue when they are on call. You also save yourself the headache of managing custom RBAC roles. 
 
 
 [<- Part 1 - Getting Started with Azure](partOneIndex.md) | [1.2 - Azure Active Directory ->](azureActiveDirectory.md)
