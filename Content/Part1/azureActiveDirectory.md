@@ -134,7 +134,7 @@ We have some users, so let's add a group.
 3. Create a new group
     - I recommend the name "Azure Administrators" or something similar
     - Make it a statically assigned security group
-4. Add the built-in admin account and the two break-glass accounts as members
+4. Add the built-in admin account as a member
 
 ## Administrative Units
 
@@ -201,7 +201,7 @@ This service also works great when you want to give users from partner organisat
 
 ### Azure AD Busines to Customer
 
-Azure also offers a Business to Customer service (Azure AD B2C), but the name can be misleading. After learning about B2B, you might expect similar behaviour, but that is not the case. To use Azure AD B2C, you create a new, particular type of Azure AD tenant. That tenant is used solely to manage end-customer identities and their access to your applications. 
+Azure also offers a Business to Customer service (Azure AD B2C), but the name can be misleading. You might expect similar behavior after learning about B2B, but that is untrue. To use Azure AD B2C, you create a new, particular type of Azure AD tenant. That tenant is used solely to manage end-customer identities and their access to your applications. 
 
 Azure AD B2C offers a wide range of handy features that allow you to:
 - integrate with external user stores,
@@ -218,11 +218,58 @@ Until now, you've been working with your Azure environment using the default adm
 
 1. Version A - If you have an Azure AD work or school account that you use daily, invite your user to the tenant oy created for learning purposes
 1. Version B - If you don't have an existing work or school account, create a new named user in your new tenant.
-2. Check whether you can log into the new tenant using your existing (version A) or new (version B) account.
+2. Add the new user to the "Azure Administrators" group, which you created in exercise 1.2.2
+
+## Azure AD RBAC
+
+In the previous chapter, we explained how Role-Based Access control works for Azure, but we never mentioned anything about Azure AD. Since ADD is a separate service, it has its own RBAC stack.
+
+### How it works
+
+Thankfully, Azure AD RBAC works almost the same as with Azure. The main difference lies in the depth of a structure - Azure can have an elaborate management hierarchy with several levels as possible scopes of assignments, and Azure AD is flat. We assign Azure AD RBAC roles to the scope of the entire tenant (and sometimes AUs).
+
+### Role Definitions
+
+Because Azure AD is used for all cloud-based services offered my Microsoft, not just Azure, it has a long list of built-in role definitions. Most of those will probably never need, but some are worth taking a closer look at:
+
+1. Global Administrator, can:
+    - Manage access to all administrative features in Azure Active Directory, as well as services that federate to Azure Active Directory
+    - Assign administrator roles to others
+    - Reset the password for any user and all other administrators
+
+2. User Administrator, can:
+    - Create and manage all aspects of users and groups
+    - Manage support tickets
+    - Monitor service health
+    - Change passwords for users, Helpdesk administrators, and other User Administrators
+
+3. Billing Administrator, can:
+    - Make purchases
+    - Manage subscriptions
+    - Manage support tickets
+    - Monitor service health
+
+Apart from those three, I highly recommend that you check out GlobalReader, Groups Administrator, Application Administrator, and Security Administrator in the [official docs from Microsoft](https://learn.microsoft.com/en-us/azure/active-directory/roles/permissions-reference)
+
+*IMPORTANT - Global Administrator is the highest permission level in Azure AD. The role allows you to do anything - it's the equivalent of root.
+
+### Exercise 1.2.4
+
+To-Do - grant global admin permissions
+
+### Where Azure AD RBAC meets Azure RBAC
+
+The Global Administrator role is another one of the few places Azure AD and Azure come together. If you have this Azure AD role, you can navigate to the Properties section of the Azure AD blade in the Azure Portal and use the option "Access management for Azure resources". Doing this will give you the User Access Administrator RBAC role in Azure RBAC (on the entire hierarchy). With that, you could create an assignment giving yourself the Owner permissions on any part of the Azure landscape.
+
+![Access management for Azure resources](Images/accessManagement.png)
+
+**Therefore, the Global Administrator role gives you not only unrestricted access to Azure AD but also effectively to the entire Azure hierarchy within the tenant.** 
+
+### Exercise 1.2.5
+
+To-do - use access management for the new account
 
 ## Azure AD Security
-
-### Roles and RBAC
 
 ### Identity Protection
 
