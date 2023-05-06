@@ -212,9 +212,10 @@ The Azure platform comes with a very long and ever-growing list of RBAC role def
 *IMPORTANT - Be very cautious about creating custom RBAC roles. They remain your responsibility and require periodic reviews.*
 
 In the long list of role definitions, there are three fundamental ones:
-- Reader - Allows reading all information about Azure Resources
-- Contributor - Allows reading, creating, managing, and deleting Azure Resources
-- Owner - Extents the Contributor role by granting rights to set permissions on Azure Resources
+- Reader - Allows reading all information about Azure Resources.
+- Contributor - Allows reading, creating, managing, and deleting Azure Resources.
+- Owner - Extents the Contributor role by granting rights to set permissions on Azure Resources.
+- User Access Administrator - Lets you manage user access to Azure resources, but not the resources themselves, a bit like Owner - Contributor.
 
 These three generic roles include all types of resources, but there are also resource-specific roles, for example Network Contributor, which should be rather self-explanatory. 
 
