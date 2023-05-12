@@ -1,3 +1,5 @@
+**The chapter below is still work in progress!**
+
 # 1.2 - Azure Active Directory
 
 Azure starts with Azure Active Directory (which we often call AzureAD or simply use the acronym AAD), there is no other way. Even if you want to use a third-party identity management solution like Okta, you will still need to use Azure AD in between. So you have no option - you must get to know it well. 

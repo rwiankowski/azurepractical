@@ -41,3 +41,5 @@ However, this course expects you to have a solid understanding of technical conc
 ## Acknowledgements and Credits
 
 Throughout this training, I used visual aids created myself, but wherever possible, I also employed images and graphics from the Microsoft official documentation at https://learn.microsoft.com.
+
+Last but not least, the format is not only inspired, but copied, from [David Beazley's Practical Python](https://dabeaz-course.github.io/practical-python/) traning. I recently had the pleasure of joining a Python training based on David's content, and I fell in love with the format. 
