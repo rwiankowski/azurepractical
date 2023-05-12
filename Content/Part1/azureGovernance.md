@@ -2,35 +2,61 @@
 
 ## What is Azure
 
+Let us begin with the obvious - a definition of what Microsoft Azure is and is not.
+
 According to Microsoft:
 
-*"The Azure cloud platform is more than 200 products and services designed to help you bring new solutions to life—to solve today’s challenges and create the future. Build, run, and manage applications across multiple clouds, on-premises, and at the edge, with the tools and frameworks of your choice."*
+> The Azure cloud platform is more than 200 products and services designed to help you bring new solutions to life—to solve today’s challenges and create the future. Build, run, and manage applications across multiple clouds, on-premises, and at the edge, with the tools and frameworks of your choice.
 
-But in plain English, I would say Azure is the public cloud offering from Microsoft that provides a wide range of IaaS (Infrastructure-as-a-Service) and PaaS (Platform-as-a-Service) services, which allow you to run almost any application or IT workload. 
+But in plain English, Azure is the public cloud offering from Microsoft that provides a wide range of IaaS (Infrastructure-as-a-Service) and PaaS (Platform-as-a-Service) services, which allow you to run almost any application or workload. 
+
+I am unaware of any SaaS (Software-as-a-Service) offering that would be a part of Azure, but that statement might not age well, so feel free to reach out if you'd like to correct me on that. Before you do so, I want to acknowledge that Azure Active Directory is a SaaS offering. However, despite what the name indicates, it's not Azure. I will go deeper into that later, so please read on before sending me an angry message.
+
+If you'd like to refresh your memory on the differences between IaaS, PaaS and SaaS, I'll leave that to the fantastic [Microsoft Lean site](https://learn.microsoft.com/en-us/training/modules/describe-cloud-service-types/).
 
 ## Buying Azure
 
-I promised we would learn by doing, so let's start by getting yourself some Azure. The table below describes the options we have to procure Azure Subscriptions.
+Now that we've covered the basic definition of Azure let's look at how we can get started with the cloud platform. There are many ways to buy Azure and several programs aimed at helping newcomers take their first steps. 
+
+The table below describes the options we have to procure Azure Subscriptions.
 
 | Acronym | Model | Setup | Discounts |
 |---------|-------|-------|-----------|
 | - | Free | Complimentaty account | 200$ USD credits for 30 days + limited free access for 12 months |
 | PAYG | Pay-As-You-Go | Sign-up online with a Credit Card | None, publicly availabile list prices apply |
-| CSP | Cloud Solutions Privider | Buy via a Microsoft Partner | Negotiated with the CSP partner, typicvally limited |
-| EA | Enterprise Account | Buy directly from Microsoft | Negotiated with Mictosoft and based on the total value of the commitment, can be significant |
+| CSP | [Cloud Solutions Provider](https://learn.microsoft.com/en-us/partner-center/csp-overview) | Buy via a Microsoft Partner | Negotiated with the CSP partner, typicvally limited |
+| EA | [Enterprise Account](https://www.microsoft.com/en-us/licensing/licensing-programs/enterprise) | Buy directly from Microsoft via the volume licensing program previously used for software liceses | Negotiated with Mictosoft and based on the total value of the commitment, can be significant |
 
 There are also specific programs and incentives for educational use. For example, the Student subscription gives 100 USD for 12 months.
 
-While we always buy the same Azure, no matter how we purchase, specific options and possibilities will vary based on the channel you use to purchase your Azure Subscriptions. For example, the workflow for creating new Subscriptions works differently - with EA, you can easily deploy them using Infra-as-Code templates; in CSP, that is not a feasible option.
+While we always buy the same Azure, no matter how we purchase, specific options and possibilities will vary based on the channel you use to purchase your Azure Subscriptions. For example, the workflow for creating new Subscriptions works differently - with EA, you can quickly deploy them using Infra-as-Code templates, but in CSP, that is not a feasible option.
+
+It's also important to mention that most of us use (probably without realising) the public version of Microsoft's public cloud called "Azure Cloud". Now you might wonder, if there is a public version of the public cloud, are two private ones as well? The answer to this question is - no, but there are three sovereign clouds with limited access:
+- Azure Government (US Gov and US DoD).
+- Azure China (served by 21Viatel under license from Microsoft).
+
+All three clouds are separate, with different management APIs and identity services used to grant access. A programmatic check will tell us the following:
+
+A programatic check will tell us the following:
+```
+PS /home/rwiankowski> Get-AzEnvironment 
+
+Name              Resource Manager Url                  ActiveDirectory Authority         Type
+----              --------------------                  -------------------------         ----
+AzureUSGovernment https://management.usgovcloudapi.net/ https://login.microsoftonline.us/ Built-in
+AzureCloud        https://management.azure.com/         https://login.microsoftonline.com Discovered
+AzureChinaCloud   https://management.chinacloudapi.cn/  https://login.chinacloudapi.cn/   Built-in
+```
+
+*Fun fact - in the past, we also had Azure Germany (operated by T-Systems under license from Microsoft). In 2018 Microsoft stopped accepting new customers or adding new features to the German sovereign cloud. It was discontinued in late 2021. Today, the general Azure Cloud has two data centre regions in Germany.*
+
 
 ### Exercise 1.1.1
 
-Let's put that new knowledge to use and set up the Azure environment you will use for learning. 
+I promised we would learn by doing, so let's start by getting yourself some Azure. In the first exercise, you'll put that new knowledge to use and set up the Azure Subscription. You will use it for the activities in the coming chapters and modules. 
+By default, we will use the Free tier for our learning purposes. The credits you get from Microsoft should be sufficient to complete all exercises, and the 30-day limit should provide a motivating sense of urgency. You might use the Azure Pass in a classroom setting, but I will keep assuming that we process with the free offering in the instructions.
 
-By default, we will use the Free tier for our learning purposes. The credits you get from Microsoft should be sufficient
-to complete all exercises, and the 30-day limit should provide a motivating sense of urgency. You might use the Azure Pass in a classroom setting, but I will keep assuming that we process with the free offering in the instructions.
-
-I strongly recommend creating a brand new Microsoft account for whichever option we use, Free Account or Azure Pass. You might already have one, and it might even be eligible for the free tier. However, we will be configuring tenant-level policies in some exercises, and you could lock yourself out. To stay safe, I advise having a dedicated account for learning. 
+I strongly recommend creating a new Microsoft account for whichever option we use, Free Account or Azure Pass. You might already have one, and it might even be eligible for the free tier. However, we will be configuring tenant-level policies in some exercises, and you could lock yourself out. To stay safe, I advise having a dedicated account for learning. 
 
 1. Use a private browser window - we want to ensure you don't sign up with an existing Microsoft or a Work/School account.
 2. Go to the [Azure website](https://azure.microsoft.com/)
@@ -41,28 +67,23 @@ I strongly recommend creating a brand new Microsoft account for whichever option
 7. Once the process completes, you should be redirected to the Azure Portal.
 8. Go to Subscriptions to verify whether your Azure Pass was redeemed successfully. If you see a subscription, you're good to start your labs!
 
+*IMPORTANT - You will need a Credit Card to verify your identity. Microsoft will not bill you unless you upgrade to a PAYG account, but you do need give them the card details to get a Free Subscription*
+
 ## How is Azure structured
 
-There are three dimensions to Azure:
-- availability - general public cloud vs. sovereign clouds,
-- geographical location,
-- logical structure, aka the Management Hierarchy.
+There are two dimensions to Azure:
+- Geographical Location
+- Logical Structure
 
 Let's explore each of those dimensions in detail.
-
-### Availability
-
-What most of us use (probably without realising) is the public version of Microsoft's public cloud called "Azure Cloud". Now you might wonder, if there is a public version of the public cloud, are there private ones as well? To answer your question - no, but there are three sovereign clouds:
-- Azure Government (US Gov and US DoD)
-- Azure Germany (operated by T-Systems under license from Microsoft)
-- Azure China (served by 21Viatel under license from Microsoft)
-
-All four clouds are entirely separate, with different management APIs and identity services used to grant access. 
 
 ### Geographical Locations
 
 #### Regions
-An Azure Region is the primary unit of consideration when discussing geographical location. A region represents a collection of data center facilities and ensures data residency. 
+An Azure Region is the primary unit of consideration when discussing geographical location. A region represents a collection of data center facilities and ensures data residency.
+
+Almost every Azure Resource has to be deployed to a specific region. Some resources are global and not bound to a particular location. In that case, the resource metadata will be stored in the area specified by the Resource Group.
+
 There are 60+ Azure regions across all (habitable) continents, and new ones are added regularly. 
 
 ![Azure Regions](Images/azureRegions.png)
@@ -80,7 +101,7 @@ The region(s) you choose to run your application(s) will have a significant impa
 
 While it might not be evident initially, all Regions are grouped into Geographies. Geography (often called Geo) represents a discrete market to preserve data residency and compliance boundaries.
 
-Most geographies have two regions designated as a Region Pair, but a few exceptions exist. In most cases, however, the two locations will be separated by hundreds of kilometers, thus allowing customers to configure Disaster Recovery and retain business continuity in a regional disaster.
+Most geographies have two regions designated as a Region Pair, but a few exceptions exist. In most cases, however, the two locations will be separated by hundreds of kilometres, thus allowing customers to configure Disaster Recovery and retain business continuity in a regional disaster.
 
 Also, please remember that certain regions are restricted to support specific customer scenarios, such as in-country disaster recovery. These regions are available only upon request by creating a new support request.
 
@@ -99,13 +120,13 @@ Thus Availability Zones protect against local outages within a specific region.
 
 Some Azure services are zone-redundant by default, some can be configured to span multiple Availability Zones, and others can be zonal - deployed to a specific zone. 
 
-**The configuration of zone redundancy will be an essential aspect of your architectural considerations and a fundamental component of highly-available applications.**
+*IMPORTANT - The configuration of zone redundancy will be an essential aspect of your architectural considerations and a fundamental component of highly-available applications.*
 
 ![Availability Zones](Images/availability-zones.png)
 
 #### Final picture
 
-Considering Geographies, Regions, and Availability Zones, we see that we can achieve very high levels of resiliency. With a zone-redundant topology in the primary region and presence in a paired region, we can protect our application(s) from a wide variety of outages. But bear in mind that such solutions come at a cost - not only resource price but also the cost of significantly increased complexity. 
+By consciously designing our topology to use Geographies, Regions, and Availability Zones, we can achieve very high levels of resiliency. With a zone-redundant topology in the primary region and presence in a paired location, we can protect our application(s) from various outages. But bear in mind that such solutions come at a cost - not only resource price but also the cost of significantly increased complexity.
 
 ![Regions and Availability Zones Combined](Images/availability-zones-region-geography.png)
 
@@ -113,12 +134,12 @@ Considering Geographies, Regions, and Availability Zones, we see that we can ach
 
 #### The Management Hierarchy
 
-In the management hierarchy of Azure, we have five main levels:
-- Azure Active Directory – The non-optional authentication provider for Azure. This SaaS service is the root of every Azure deployment. It stores security principals like user accounts and groups and offers authentication and authrosiation capabilities. We will dive deeper into Azure AD very soon. 
-- Management Group – The optional logical container used to manage multiple subscriptions together. We commonly use it to group subscriptions used by a given business unit, hosting a specific workload or managed by a unique team.
+In the management hierarchy of Azure, we have five primary levels:
+- Azure Active Directory – The non-optional authentication provider for Azure. This SaaS service is the root of every Azure deployment. It stores security principals like user accounts and groups and offers authentication and authorisation capabilities. We will dive deeper into Azure AD very soon. 
+- Management Group – The optional logical container helps us efficiently manage multiple subscriptions. We commonly use it to group subscriptions that are used by a given business unit, host a specific workload or are operated by a unique team.
 - Subscription – The primary unit of purchasing Azure.
 - Resource Group – The non-optional logical container for Azure Resources. Resource groups should bring together resources that share the same lifecycle. 
-- Resource - the service or component which we want to use. Every resource must be deployed to a specific Azure Region and a Resource Group.
+- Resource - the service or component which we want to use. Every resource must be deployed to a specific Azure Region and a Resource Group.to use. Every resource must be deployed to a specific Azure Region and a Resource Group.
 
 ![Management Hierarchy](Images/managementiHierachy.png)
 
@@ -127,7 +148,7 @@ Management Groups, Subscriptions, and Resource Groups all allow for the followin
 - assigning policies
 - scoping costs
 
-We will dive deeper into all three concepts later in this course If this doesn't make complete sense just yet, give me a bit more time to put it into context.
+We will dive deeper into all three concepts later in this course. If this doesn't make complete sense, the upcoming chapters should address this issue.
 #### Considerations for Management Groups
 
 - Are not enabled by default - you need to opt-in to get this functionality.
@@ -150,14 +171,14 @@ We will dive deeper into all three concepts later in this course If this doesn't
 #### Considerations for Resource Groups
 
 - Resource Groups are logical containers for Azure Resources.
-- While they are only virtual entities without a physical representation, each must be deployed to a specific Azure Region. The specified location will be where the metadata is stored, so keep it in mind for regulatory compliance.
+- They are only virtual entities without a physical representation, but each must be deployed to a specific Azure Region. The specified location will be where the metadata is stored, so keep it in mind for regulatory compliance.
 - Every Resource needs to be in a Resource Group. This is the way.
 - Every Resource also must be deployed to an Azure Region, but this region does not to be the same as the region of the Resource Group. You can deploy the Resource Group to West Europe (to keep the metadata with the EU) and deploy child Resources to East US (because that's where your users are located). However, I prefer to align the Resource Groups and child Resources locations. I will soon show you why.
-- Most importantly - **Resource Groups should hold together Resources that share the lifecycle.** That is, they are created, updated, and destroyed together. For example, if you have an application consisting of a web front end and a relational database, both components belong in different Resource Groups. You will probably update the front end much more often and might even choose to replace it with something completely new. But your database will likely remain as is or see only minor schema updates. 
+- Most significantly - **Resource Groups should hold together Resources that share the lifecycle.** That is, they are created, updated, and destroyed together. For example, if you have an application consisting of a web front end and a relational database, both components belong in different Resource Groups. You will update the front end often and may even replace it with something completely new. But your database will remain as is or see only minor schema updates. 
 
 ### Exercise 1.1.2
 
-While optional, Management Groups are a fantastic tool for controlling your growing cloud environment. The Azure Free tier only provides a single Azure Subscription, but that shouldn't stop us from learning how Management Groups work.
+While optional, Management Groups are a fantastic tool for controlling your growing cloud environment. We will only have a single Azure Subscription throughout this course, but that shouldn't stop us from learning how Management Groups work.
 
 1. If you're not logged into the Azure Portal, please do so. 
     - Be sure to use the new Microsoft Account you created while signing up for Azure.
@@ -179,14 +200,14 @@ Therefore, I recommend you resist spending several weeks inventing the perfect n
 
 ### Tagging
 
-Tags provide metadata for your Azure Resources. They are key-value pairs of your choice that allow for enriching resources with valuable information. This information logically organises your resources for billing, automation, or anything else you want to achieve. 
+Tags provide metadata for your Azure Resources. They are key-value pairs of your choice that allow for enriching resources with valuable information. This information organises your resources for billing, automation, or anything else you want to achieve. 
 
 You can find yourself in a situation where a well-designed Management Hierarchy and a solid Naming Convention leave little need for tagging, and that's OK. Use tags when needed to make your life easier, but I recommend avoiding duplicating information - the DRY principle works here as it does in software engineering. 
 
 My favourite examples of how to use tags focus on automation:
-- Scaling, both vertical (changing the SKU) and horizontal (starting/stopping instances), based on the demand or time/date.
-- Deploying updates in batches.
-- Configuring backup strategies. 
+- Scaling, both vertical (changing the SKU) and horizontal (starting/stopping instances), based on the demand or time/date,
+- deploying updates in batches,
+- configuring backup strategies. 
 
 ## Azure RBAC
 
@@ -200,14 +221,26 @@ Let's first describe how you implement RBAC, and then I'll explain what the diff
 
 In simpler words, we define who, what, and where. 
 
-- Scope - a boundary for the level of access that is required. As I mentioned, anything from the Management Groups, through Subscriptions and Resource Groups down to individual resources, can be a scope of an RBAC assignment.
-- Security Principal - An object representing an entity requesting access to resources. If that sounds vague, please hold on to your questions as we will dive deeper into this topic in the next chapter.
-- Role Definition - Collection of permissions that lists the operations that can be performed. 
-- Assignment - the process of attaching a role definition at a selected scope. 
+- Scope - a boundary for the level of access that is required.
+- Security Principal - An object representing an entity requesting access to resources. 
+- Role Definition - A collection of permissions that lists the operations that can be performed.
+- Assignment - attaching a role definition at a selected scope. 
+
+
+### Security Principals
+
+A Security Principal for Azure RBAC in an Azure AD object (or its logical representation). I will cover Azure AD in the next post, so for now, expect that you can create RBAC assignments using the following:
+- users,
+- groups,
+- service principals,
+- managed identities.
+
+![Security Principals](Images/azureRbacSecurityPrincipal.png)
+
 
 ### Role Definitions
 
-The Azure platform comes with a very long and ever-growing list of RBAC role definitions, but you can also create custom ones if none of the built-in options meet your needs.
+The Azure platform comes with a very long and ever-growing list of RBAC role definitions, but you can also create custom ones if you need more than the built-in options.
 
 *IMPORTANT - Be very cautious about creating custom RBAC roles. They remain your responsibility and require periodic reviews.*
 
@@ -215,9 +248,9 @@ In the long list of role definitions, there are three fundamental ones:
 - Reader - Allows reading all information about Azure Resources.
 - Contributor - Allows reading, creating, managing, and deleting Azure Resources.
 - Owner - Extents the Contributor role by granting rights to set permissions on Azure Resources.
-- User Access Administrator - Lets you manage user access to Azure resources, but not the resources themselves, a bit like Owner - Contributor.
+- User Access Administrator - It lets you manage user access to Azure resources, but not the resources themselves, a bit like Owner-Contributor.
 
-These three generic roles include all types of resources, but there are also resource-specific roles, for example Network Contributor, which should be rather self-explanatory. 
+These three generic roles include all types of resources, but there are also resource-specific roles, such as Network Contributor, which should be self-explanatory. 
 
 Every Role Definition indicates which actions are allowed or not for a chosen Resouce Provider (for now, think resource type, we will dive deeper into the topic later).
 
@@ -226,6 +259,16 @@ Every Role Definition indicates which actions are allowed or not for a chosen Re
 *IMPORTANT - "Actions" and "NotActions" apply to the management plane, that is, the configuration of Azure resources. "DataActions" apply to the data plane, representing data stored within the resources, such as BLOBs stored in a Storage Account. Be careful when you only want to grant access to the management plane and not the data plane, or the other way around*
 
 You can find the complete list of built-in Azure RBAC Role Definitions in the [official documentation from Microsoft](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles).
+
+### Scopes
+
+Any of the following entities from the Management Hierarchy can act as a scope for an Azure RBAC assignment:
+- management group,
+- subscription,
+- resource group,
+- unique resource.
+
+![Scopes for Azure RBAC](Images/azureRbacScope.png)
 
 ### Assignments
 
@@ -254,7 +297,7 @@ Microsoft's recommendations for RBAC include the following:
 
 Keep those in mind for the exams, but also be mindful that this advice works best in organisations that use functional silos. 
 
-When your environment consists of cross-functional DevOps teams, I would instead give the entire group Contributor rights on the Management Group or Subscription dedicated to the application/workload managed by the team. This way, everyone can fix an issue when they are on call. You also save yourself the headache of managing custom RBAC roles. 
+When your environment consists of cross-functional DevOps teams, I suggest giving the entire group Contributor rights on the Management Group or Subscription dedicated to the application/workload managed by the team. This way, everyone can fix an issue when they are on call. You also save yourself the headache of managing custom RBAC roles. 
 
 
 [<- Part 1 - Getting Started with Azure](partOneIndex.md) | [1.2 - Azure Active Directory ->](azureActiveDirectory.md)
