@@ -2,26 +2,28 @@
 
 # 1.2 - Azure Active Directory
 
-Azure starts with Azure Active Directory (which we often call AzureAD or simply use the acronym AAD), there is no other way. Even if you want to use a third-party identity management solution like Okta, you will still need to use Azure AD in between. So you have no option - you must get to know it well. 
+Azure starts with Azure Active Directory (which we often call AzureAD or use the acronym AAD). There is no other way. Even if you want to use a third-party identity management solution like Okta, you will still need to use Azure AD in between. So you have no option - you must get to know it well. 
 
 ## What is Azure Active Directory
 
-AAD is a Software-as-a-Service (SaaS) enterprise Identity and Access Management (IAM) solution. It is a cloud-based and multitenant service that offers:
+AzureAD is a Software-as-a-Service (SaaS) enterprise Identity and Access Management (IAM) solution. It is a cloud-based and multitenant service that offers:
 - authentication - it verifies users' identities and issues access tokens,
 - authorisation - it verifies users' access permissions to Enterprise Applications, which can be published via AAD.
 
-A wide range of advanced security, collaboration, and other features complements the core identity and access capabilities. 
+Today Azure AD offers a wide range of advanced security, collaboration, and other features besides the core identity and access capabilities. We will only explore some of them, as their scope is big enough to make it into a separate course. 
 
 The name of the service is, however, misleading. While we cannot use Azure without Azure AD, AAD is not a part of Azure, and many customers use it without ever thinking of deploying any Azure Resources. Azure Active Directory is also the backbone of other cloud-based services offered by Microsoft, like Microsoft 365 and Dynamics 365. 
+
+Therefore, I will often say, "Azure AD is not Azure". While it sounds controversial, it's a good rule of thumb for someone still finding their bearings in this domain. As we dive into various topics, you will understand better why I dare to say so. 
 
 ### Azure AD Glossary
 
 Azure Active Directory introduces a fair bit of new terminology, and it is fundamental to understand what is what. We often use synonyms when referring to the same thing, so become familiar with the essential glossary below.
 
-- **Tenant** - The most important word in our dictionary is the tenant. The tenant (often also called directory or domain) is a dedicated instance of Azure AD, most commonly intended for use by a specific organisation. Any organsiation can create additional tenants, but as you hopefully remember from the previous chapter, all subscriptions must belong to a single tenant - it is a tree-like structure. Therefore, creating several directories can make your governance very complex. One reasonable exception is separating end-user services like Microsoft 365 and infrastructure-focused Azure into different tenants. Due to the architecture of Azure AD (more on this very soon), such a setup can help with the separation of duties, especially when parts of IT are outsourced. A new ADD tenant was created for you when you signed up for the Azure Free account.
+- **Tenant** - An essential word in our dictionary is the tenant. The tenant (often also called directory or domain) is a dedicated instance of Azure AD. Most commonly, it is intended for use by a specific organisation, but organisations can create additional tenants. As you probably remember from the previous chapter, all subscriptions belong to a single tenant - it is a tree-like structure. Therefore, creating several directories can make your governance very complex. One reasonable exception is separating end-user services like Microsoft 365 and infrastructure-focused Azure into different tenants. Due to the architecture of Azure AD (more on this very soon), such a setup can help with the separation of duties, especially when parts of IT are outsourced. A new ADD tenant was created for you when you signed up for the Azure Free account.
 - **Identity** - An Identity is an entity that can be authenticated, for example, a user or an application.
 - **Account** - An identity that has data associated with it.
-- **Azure AD account** - An identity created through Azure AD or another Microsoft cloud service, such as Microsoft 365. Identities are stored in Azure AD and accessible to your organization's cloud service subscriptions. This account is also sometimes called a Work or school account.
+- **Azure AD account** - An identity created through Azure AD or another Microsoft cloud service, such as Microsoft 365. Identities are stored in Azure AD and accessible to your organisation's cloud service subscriptions. This account is also sometimes called a Work or school account.
 
 ### Domains and Custom Domains
 
@@ -29,7 +31,7 @@ Every Azure AD tenant has a domain name used to identify the instance of the Azu
 
 > \<something of your choice\>.onmicrosoft.com
 
-So, as you might have already guessed, given that ADD is a multi-tenant SaaS offering, the domain name must be globally unique.
+The domain name must be globally unique because ADD is a multitenant SaaS offering.
 
 The built-in domain name will always be there with you, but you can also add a custom domain name to make your Accounts' User Principal Names (UPNs) more user-friendly.
 
@@ -49,7 +51,29 @@ In its default form, Azure AD is a free service. However, the free edition has l
 
 The following table provides an overview of the differences between various Azure AD editions.
 
-![Azure AD Editions](Images/azureAdEditions.png)
+Here is a markdown table created from the selected text:
+
+| Feature | Azure AD Free - Security defaults (enabled for all users) | Azure AD Free - Global Administrators only | Office 365 | Azure AD Premium P1 | Azure AD Premium P2 |
+|---------|----------------------------------------------------------|--------------------------------------------|------------|---------------------|---------------------|
+| Protect Azure AD tenant admin accounts with MFA | ● | ● (Azure AD Global Administrator accounts only) | ● | ● | ● |
+| Mobile app as a second factor | ● | ● | ● | ● | ● |
+| Phone call as a second factor |  | ● | ● | ● | ● |
+| SMS as a second factor |  | ● | ● | ● | ● |
+| Admin control over verification methods |  | ● | ● | ● | ● |
+| Fraud alert |  |  |  | ● | ● |
+| MFA Reports |  |  |  | ● | ● |
+| Custom greetings for phone calls |  |  |  | ● | ● |
+| Custom caller ID for phone calls |  |  |  | ● | ● |
+| Trusted IPs |  |  |  | ● | ● |
+| Remember MFA for trusted devices	| 	| ●	| ●	| ●	| ● |
+| MFA for on-premises applications	| 	|	|	| ●	| ● |
+| Conditional access	| 	|	|	| ●	| ● |
+| Risk-based conditional access	| 	|	|	|	| ● |
+| Identity Protection (Risky sign-ins, risky users)	| 	|	|	|	| ● |
+| Access Reviews	| 	|	|	|	| ● |
+| Entitlements Management	| 	|	|	|	| ● |
+| Privileged Identity Management (PIM), just-in-time access	| 	|	|	|	| ● |
+| Lifecycle Workflows (preview)	| 	|	|	|	| ● |
 
 ### Azure AD vs. AD
 
