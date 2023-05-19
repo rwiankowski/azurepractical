@@ -47,11 +47,8 @@ The process of configuring a custom domain name is relatively simple and quick. 
 
 ### Azure AD Editions
 
-In its default form, Azure AD is a free service. However, the free edition has limited benefits and features, so you will want to upgrade to Azure AD Premium in most production scenarios. 
+In its default form, Azure AD is a free service. However, the free edition has limited benefits and features, so you will want to upgrade to Azure AD Premium in most production scenarios. To understand why, we will look at the following table, which provides an overview of the differences between various Azure AD editions:
 
-The following table provides an overview of the differences between various Azure AD editions.
-
-Here is a markdown table created from the selected text:
 
 | Feature | Azure AD Free - Security defaults (enabled for all users) | Azure AD Free - Global Administrators only | Office 365 | Azure AD Premium P1 | Azure AD Premium P2 |
 |---------|----------------------------------------------------------|--------------------------------------------|------------|---------------------|---------------------|
