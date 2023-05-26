@@ -7,8 +7,8 @@ Azure starts with Azure Active Directory (which we often call AzureAD or use the
 ## What is Azure Active Directory
 
 AzureAD is a Software-as-a-Service (SaaS) enterprise Identity and Access Management (IAM) solution. It is a cloud-based and multitenant service that offers:
-- authentication - it verifies users' identities and issues access tokens,
-- authorisation - it verifies users' access permissions to Enterprise Applications, which can be published via AAD.
+- **Authentication** - it verifies users' identities and issues access tokens,
+- **Authorisation** - it verifies users' access permissions to Enterprise Applications, which can be published via AAD.
 
 Today Azure AD offers a wide range of advanced security, collaboration, and other features besides the core identity and access capabilities. We will only explore some of them, as their scope is big enough to make it into a separate course. 
 
@@ -106,7 +106,7 @@ In its default form, Azure AD is a free service. However, the free edition has l
 | Privileged Identity Management (PIM), just-in-time access	| 	|	|	|	| ● |
 | Lifecycle Workflows (preview)	| 	|	|	|	| ● |
 
-The table, taken from Microsoft's official documentation, could and should be more precise, especially on MFA. In a way, it hides the fact that Multi-Factor Authentication is not included in the free tier. At this point, you might feel the urge to point at the table and correct me. However, the Azure Active Directory free edition only provides MFA for accounts with full administrative permissions in the tenant. And that group should be as small as possible.
+The table, taken from Microsoft's official documentation, could and should be more precise, especially on MFA. In a way, it hides the fact that Multi-Factor Authentication is not included in the free tier. At this point, you might feel the urge to point at the table and correct me. However, the Azure Active Directory free edition only provides MFA for accounts with administrative permissions in the tenant. And that group should be as small as possible.
 To get MFA and another handy security feature called Conditional Access, you will need a P1 license. That should be your default for a regular user. However, considering the components required for people who manage Azure AD and Azure Resources, you should go for P2, as it gives you Privileged Access Management.
 
 We will take a closer look at those security features very soon, but first, we need to get more familiar with a few other topics. 
@@ -123,7 +123,7 @@ In Azure AD, we have three types of users:
 - Guest Users - created in other Azure AD tenants and invited to your tenant (more on that later in this chapter)
 
 
-*Pro Tip - when you delete a user in Azure AD, it is only soft-deleted and stays in the "bin" for 30 days. This feature allows you to recover an account deleted by mistake quickly. I've come to appreciate this feature more than I'd like*
+*Pro Tip - when you delete a user in Azure AD, it is only soft-deleted and stays in the "bin" for 30 days. This feature allows you to recover an account deleted by mistake quickly. I've come to appreciate this option more than I'd like*
 
 ### Exercise 1.2.1
 
@@ -144,6 +144,8 @@ Unfortunately, it's possible to find yourself in a situation where everyone with
 *Pro Tip! - When learning using a disposable environment, you don't need to worry too much about passwords. However, in a real-life scenario, you should always use strong passwords for the break-glass accounts. I recommend at least 128 characters (the maximum is 256) and storing the passwords as two halves in separate locations. For example, the left side is in a virtual vault, and the right is in a safe.* 
 
 ### Groups
+
+![Azure AD Groups](Images/azureAdGroups.png)
 
 When it comes to Groups, in Azure AD, we have two options:
 - **Security** manages user and computer access to shared resources. Owners can consist of users and service principals. Members can include users, devices, other groups, and service principals.
@@ -182,7 +184,9 @@ In Azure, we use different mechanisms. We will look at them in the following sec
 
 ### Service Principals
 
-The first option is to use Service Principals (SPNs), which you can find in the Azure portal under App Registrations. An SPN is an Azure AD identity that an application will use (can be external) to authenticate to Azure resources. The authentication can use a secret (password) or a certificate.
+![Azure AD App Registrations](Images/azureAdAppRegistrations.png)
+
+The first option is to use Service Principals (SPNs), which you can find in the Azure portal under App Registrations. An SPN is an Azure AD identity that an application (can be external) will use to authenticate to Azure resources. The authentication can use a secret (password) or a certificate.
 
 In the simplest scenario, once you've imported the correct library into your source code, you need to pass the SPN ObjectId and the secret value to the application, and it can authenticate against Azure AD.
 
@@ -190,7 +194,7 @@ In the simplest scenario, once you've imported the correct library into your sou
 
 Service Principals work well and are easy to use, but they come with a significant drawback - they leave you responsible for generating, securing, and managing credentials. In a growing environment, that task can become an impactful burden. But, thankfully, Managed Identities come to the rescue.
 
-A Managed Identity is an Azure AD Service Principal managed by Azure. This short sentence above can take a few moments to sink in, but it is essential. As you hopefully remember, Azure AD is not Azure, but Managed Identities are one of the few places where the two services blend.
+A Managed Identity is an Azure AD Service Principal managed by Azure. This short sentence above can take a few moments to sink in, but it is essential. As you hopefully remember, Azure AD is not Azure, but Managed Identities are one of the few places where the two services blend. An Azure AD security principal, represented and managed by Azure Resource.
 
 A Managed Identity can be associated with an Azure Resource and used by that resource to access a target that supports Azure AD authentication and Azure RBAC. For example, we can assign it to a Function App and permit it to access a Storage Account. However, we never touch its credentials throughout this process and the remainder of the identity's lifecycle. Those are generated and periodically rotated by Azure.
 
@@ -223,14 +227,14 @@ I excluded from the list above a sandbox tenant you might use individually or in
 
 When you end up having multiple tenants, you could keep them completely isolated and create duplicate user accounts (and potentially groups) in every one of them, but that would be impractical. Also, you would eventually face configuration drift and potentially expose security vulnerabilities.
 
-You can use the Azure AD Business to Business (Azure AD B2B) collaboration to mitigate this challenge. The service allows us to invite an Azure AD account from one tenant as a guest user in another tenant. If you remember Guest Users from earlier in this chapter, that was Azure AD B2B.
+Thankfully, we have Azure AD Business to Business (Azure AD B2B) collaboration to mitigate this challenge. The service allows us to invite an Azure AD account from one tenant as a guest user in another tenant. If you remember Guest Users from earlier in this chapter, that was Azure AD B2B.
 When you invite an external account into your tenant, your directory only stores a reference (pointer) to the Azure AD account in another tenant. When the user tries to authenticate, they are redirected to their home tenant, and once they obtain an authentication token, they are redirected back and authorised.
 
 As a result, you can use a single Azure AD account to access multiple Azure AD tenants. 
 
 This service also works great when you want to give users from partner organisations access (like vendors and service providers) to a part of your Azure environment. Instead of creating (and managing) Azure AD accounts for them, you can invite them and let them use their existing identities.
 
-In the example above, I talk about one Azure AD tenant inviting users from another ADD as guest users, but there are other options. You can also invite Microsoft, Google, Facebook (though with limitations) and other accounts. However, those scenarios are rare, and in many cases, they are not good practice. If, for example, you use someone's work or school account, you can be reasonably confident that that account will be disabled or removed when they leave the organisation. On the other hand, inviting someone using their personal Microsoft account will place that responsibility on you. 
+In the example above, I talk about one Azure AD tenant inviting users from another ADD as guest users, but there are other options. You can also invite Microsoft, Google, Facebook (though with limitations) and other accounts. However, those scenarios are rare, and in many cases, they are not good practice. If you use someone's work or school account, you can be reasonably confident that that account will be disabled or removed when they leave the organisation. On the other hand, inviting someone using their personal Microsoft account will place that responsibility on you. 
 
 *Pro Tip! - The challenge I describe above can also be solved using Access Packages. We will not look at them here, but I encourage you to add the [official documentation](https://learn.microsoft.com/en-us/azure/active-directory/governance/entitlement-management-access-package-create) to your reading list, as several valuable use cases exist for that functionality.* 
 
@@ -257,7 +261,7 @@ Until now, you've been working with your Azure environment using the default adm
 
 ## Azure AD RBAC
 
-In the previous chapter, we explained how Role-Based Access Control works for Azure, but we never mentioned anything about Azure AD. Since "Azure AD is not Azure", it has its own RBAC stack.
+In the previous chapter, we explained how Role-Based Access Control works for Azure, but we never mentioned anything about Azure AD. But, since "Azure AD is not Azure", it has its own RBAC stack.
 
 ### How it works
 
@@ -269,7 +273,9 @@ The main difference lies in the scope - while Azure can have an elaborate manage
 
 ### Role Definitions
 
-Because Azure AD is used for all cloud-based services offered by Microsoft, not just Azure, it has a long list of built-in role definitions. Most of those will probably never need, but some are worth taking a closer look at:
+![Azure AD RBAC](Images/azureAdRbac.png)
+
+Because Azure AD is used for all cloud-based services offered by Microsoft, not just Azure, it has a long list of built-in role definitions. Most of those you will probably never need, but some are worth taking a closer look at:
 
 1. Global Administrator can:
  - Manage access to all administrative features in Azure Active Directory, as well as services that federate to Azure Active Directory
@@ -326,13 +332,70 @@ Finally, we will dive into some security features Azure AD offers. We won't cove
 
 ### Conditional Access
 
-+ trusted IPs
+![Azure AD Conditional Access](Images/azureAdConditionalAccess.png)
+
+One of the fundamental security features of Azure Active Directory is Conditional Access. The feature analyses various signals to automate decisions and enforce organisational access policies.
+
+The signals include, but are not limited to, the following:
+- user identity and group membership,
+- device platform,
+- location,
+- sign-in risk,
+- client application.
+
+Conditional Access policies are like if-then statements allowing or blocking access, enforcing multi-factor authentication, or restricting the user's session. 
+You can create up to 195 policies in every AAD tenant but try to keep the number as low as possible and pay attention to how you name them. Reviewing a long list of configurations will make troubleshooting a painful experience, but even a short list will cause problems if your naming is inconsistent. Conditional Access configuration is not a place we look often, so in most cases, you'll need to remember the details just a few weeks after you define your settings. Name them well, and your life will be easier!
+
+Remember that Conditional Access will require Azure AD Premium - P1 for most features and P2 for Identity Protection. You will need the Security Administrator or Conditional Access Administrator RBAC role to configure the component. Global Administrator, as always, can do anything. 
+
+When you create a new policy, you can leave the default setting "Report-only" to evaluate its behaviour before you start limiting users' sign-ins. But to ensure the security limitations you configure are in place, you must flip the switch to "On".
+
+![Azure AD Conditional Access Report-Only mode](Images/azureAdCaReport.png)
+
+Setting up conditional access is one of the first things I recommend configuring in your Azure AD tenant. Start with a simple set to provide a solid security baseline and build on top of that - limiting access to the Azure Management plane and enforcing MFA for all users should be sufficient. Do exclude your break-glass accounts, though!
+
+### Exercise 1.2.6
+
+The best way to learn about Conditional Access policies is to configure them yourself, so that's what we will do now.
+
+1. Make sure you're logged into the Azure Portal.
+2. Enable a free trial of the premium features on your Azure tenant.
+    - Check the Licenses tab under Azure Active Directory,
+    - Go for Premium P2
+    - Remember to assign the license to your user 
+3. Navigate to the Azure Active Directory blade, Security tab and there you will find Conditional Access
+4. Create three new Conditional Access policies:
+    - Block access to the "Microsoft Azure Management" application from anywhere except your office/home public IP address.
+    - Allow access for all users to all applications, but enforce Multi-Factor Authentication.
+    - Disable legacy authentication
+5. Make sure all policies are on!
+
+*I strongly recommend excluding the break-glass accounts from the first two policies. You want to be able to access the Azure Management plane in case of an emergency, and that can include situations in which you don't have access to any of your trusted locations or if the Azure AD MFA service is suffering from an outage.*
 
 ### Multi-Factor Authentication
 
-### Privileged Identity Management
+Multi-Factor Authentication (MFA) is another fundamental security feature of Azure AD. It requires users to verify their identity by providing two or more forms of authentication. Those forms include the following:
+- something you know, like your account password
+- something you are, like your fingerprint or face/eye scan
+- something you have, like a security key or your smartphone
+
+The MFA service provided by Azure Active Directory supports the following forms of additional verification:
+- Microsoft Authenticator
+- Windows Hello for Business
+- FIDO2 security key
+- OATH hardware token 
+- OATH software token
+- SMS
+- Voice call
+
+At the time of writing, we still have access to the legacy (I'm typically careful with the l-word, but a single glance at the UI takes us back in time more than a few years) interface for configuring MFA settings, but we also have access to the new one. The old interface is available via the "Multifactor authentication" section under "Security" in the Azure AD Blade, and the new one is under "Authentication methods". The details of the migration are described [here](https://learn.microsoft.com/en-gb/azure/active-directory/authentication/how-to-authentication-methods-manage).
+
+![MFA Configuration Options](Images/azureAdMfa.png)
+
+Multi-factor authentication is a relatively simple yet potent protection mechanism. A common saying reminds us that "identity is the new perimeter", and enforcing MFA is the best thing we can do to help secure users in your organisation.
 
 ### Identity Protection
+
 ![Azure AD Identity Protection Overview](Images/identityProtectionOverview.png)
 
 Azure AD Identity Protection is a security service that detects potential vulnerabilities in your organisation's identities. It uses existing anomaly-detection capabilities and introduces new risk-detection types based on Microsoft's experience in Azure AD, Microsoft Accounts, and Xbox. Trillions of signals are analysed daily to identify and protect customers from threats.
@@ -348,6 +411,64 @@ Identity Protection's signals can be used with Conditional Access or a security 
 
 ### Access Reviews
 
+Organisations can use Azure AD access reviews to manage group memberships, access to enterprise applications and privileged role assignments efficiently. 
+Self-service capabilities have made it convenient for users to join groups, invite guests, connect to cloud apps, and work remotely from their work or personal devices. However, this convenience has led to a need for better access management capabilities. As new users join, ensuring they have the access they need to be productive is essential. Similarly, removing their old access when they move teams or leave the company is critical. Excessive access rights can lead to compromises and result in audit findings, indicating a lack of control over access. To proactively manage access, resource owners should regularly review who has access to their resources.
 
+Access reviews should be used in scenarios such as when there are too many users in privileged roles, and automation is not possible. For example, it is good to check how many users have administrative access and how many are Global Administrators.
+For specific resources, it might be required as part of compliance processes to ask people to reconfirm and justify why they need continued access regularly. Finally, recurring access reviews can be set up for users at set frequencies such as weekly, monthly, quarterly or annually, and the reviewers will be notified at the start of each review. 
+
+Depending on the access you want to verify, you will want to use a different service/feature:
+
+| Access rights of users | Reviewers can be | Review created in | Reviewer experience |
+|------------------------|------------------|-------------------|---------------------|
+| Security group members<br>Office group members | Specified reviewers<br>Group owners<br>Self-review | access reviews<br>Azure AD groups | Access panel |
+| Assigned to a connected app | Specified reviewers<br>Self-review | access reviews<br>Azure AD enterprise apps (in preview) | Access panel |
+| Azure AD role | Specified reviewers<br>Self-review | PIM | Azure portal |
+| Azure resource role | Specified reviewers<br>Self-review | PIM | Azure portal |
+| Access package assignments | Specified reviewers<br>Group members<br>Self-review | entitlement management | Access panel |
+
+### Security Defaults
+Every new Azure AD tenant is preconfigured with security defaults to make things easier for customers. It's a great starting point, but there are a few critical yet inconspicuous details. Let's take a look at Microsoft's description:
+
+
+>Security defaults make it easier to help protect your organisation from these identity-related attacks with preconfigured security settings:
+>- Requiring all users to register for Azure AD Multifactor Authentication.
+>- Requiring administrators to do multifactor authentication.
+>- Requiring users to do multifactor authentication when necessary.
+>- Blocking legacy authentication protocols.
+>- Protecting privileged activities like access to the Azure portal.
+
+If you read it carefully, you'll notice that all users must register for MFA, but only administrators will be challenged with a second factor upon every sign-in. Non-administrator users must only respond to an MFA challenge when necessary. However, the documentation is very vague about the circumstances that define the necessity. 
+
+>Azure AD decides when a user will be prompted for multifactor authentication, based on factors such as location, device, role and task.
+
+Therefore, getting a false sense of safety regarding the MFA configuration provided by the security defaults is relatively easy. Multi-Factor Authentication, in the most functional form, is only available with Azure AD Premium.
+
+### Improving Security
+
+While I appreciate the security defaults as built-in protection, I need more. I would want my organisation to use more than the baseline level of protection, so I recommend you follow my hardening guide consisting of the steps listed below:
+- Get Azure AD Premium for all your users. Many of you might find it controversial due to the associated costs, but damage control after a security breach is usually more expensive. It's a good investment. Get a P1 license for all standard users and a P2 for Azure operators/ administrators. The latter gives us Azure AD PIM, which we will cover in the next chapter, but it is another must-have feature.
+- Disable the security defaults.
+- Create three new Conditional Access policies to:
+    - Block access to the "Microsoft Azure Management" application from anywhere except your office/VPN IP ranges (exclude the break-glass accounts).
+    - Allow access for all users to all applications, but enforce Multi-Factor Authentication (exclude the break-glass accounts).
+    - Disable legacy authentication protocols.
+- Configure the following Azure Active Directory User Settings:
+    - Set 'User can register applications' to No
+    - Set 'Restrict non-admin users from creating tenants' to No
+    - Set 'Restrict access to Azure AD Administration portal' to yes
+    - Set 'Allow users to connect their work or school account with LinkedIn' to No
+- Configure the Azure Active Directory User Settings External collaboration Settings:
+    - Set 'Guest user access restrictions' to 'Guest users have limited access to properties and memberships of directory objects' 
+    - Set 'Guest invite restrictions'  to 'Only users assigned to specific admin roles can invite guest users 
+    - Set 'Enable guest self-service sign up via user flows' to NO
+    - Set 'Allow external users to remove themselves from your organisation to Yes
+    - Set 'Collaboration restrictions' to 'Allow invitation only to the specified domains (most restrictive) ' and, if needed, and only the desired target domains.
+
+### Exercise 1.2.7
+
+You already covered the first part of the list above in the previous exercise - to configure the Conditional Access policies, you had to get the premium licenses and disable the security defaults. But there are still a few things to tweak:
+1. Configure the Azure Active Directory User Settings from the list above
+2. Configure the Azure Active Directory User Settings External collaboration Settings from the list above
 
 [<- 1.1 Azure Governance](azureGovernance.md) | [1.3 - Hybrid Identity ->](hybridIdentity.md)
