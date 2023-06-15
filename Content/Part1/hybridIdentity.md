@@ -1,5 +1,3 @@
-**The chapter below is still work in progress!**
-
 # 1.3 - Hybrid Identity
 
 ## Why a Hybrid Identity?
