@@ -80,7 +80,7 @@ When that's the case, you have two options:
 - Extend your existing AD DS to Azure
 - Deploy Azure AD Domain Services
 
-To better understand which one might be the better choice in your circumstances, we'll look at both. 
+We'll look at both to understand which one might be the better choice in your circumstances.
 
 ### Extending AD to Azure
 
