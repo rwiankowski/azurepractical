@@ -103,7 +103,7 @@ If setting up and managing the entire stack of resources needed to extend your A
 If Azure AD Connect synchronises Active Directory with your Azure AD tenant, Azure AD Domain Services sets up an opposite data flow. The service will deploy Domain Controllers, configure Active Directory Domain Services and set up the synchronisation from your AzureAD tenant towards AD.
 As a result, you get a managed Active Directory Domain Services environment connected to the Azure Virtual Network(s) of your choice. you can deploy multiple instances, or replica sets, even across multiple Azure regions. Each replica set will consist of two Domain Controller configured in a zone-redundant topology (if the region supports Availability Zones).
 
-![Example multi-region deployment of Azure AD Domain Services with two replica sets](images/aaddsTopology.png)
+![Example multi-region deployment of Azure AD Domain Services with two replica sets](Images/azureAdDomainServices.png)
 
 If it's starting to sound too good to be true, it actually is. Although AAD DS is a fantastic service, several limitations will dictate whether the managed AD offering is for you or you will be forced to go the traditional route.
 
