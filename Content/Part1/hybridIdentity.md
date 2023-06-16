@@ -118,4 +118,6 @@ There are a few other limitations, but if you're interested, I'll have to send y
 
 If none of the features unavailable in the managed Active Directory Domain Services offering is crucial to your use case, I recommend seriously considering Azure AD DS. While you can get a better deal, looking purely at consumption cost, with a pair of traditional Domain Controllers, the cost of managing, securing, updating and protecting those VMs cannot be underestimated. More on those topics in part 3.
 
+**IMPORTANT - When you deploy an Azure AD Domain Services instance, you must provide a subnet of a Virtual Network that the managed service will use to deploy Domain Controllers. The Network Security Group, which acts as the subnet's Access Control Lis, requires particular rules. Unfortunately, some of them cannot be configured via the Azure Portal. To work around this issue, allow the AAD DS wizard to create the subnet or use a programmatic deployment for the NSG. Even though it might sound like back magic right now, please keep it in mind. It will all make perfect sense soon.**
+
 [ <- 1.2 - Azure Active Directory](azureActiveDirectory.md) | [ 1.4 - Managing Azure -> ](managingAzure.md)
