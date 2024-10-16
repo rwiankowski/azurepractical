@@ -1,5 +1,11 @@
 # 1.1 - Azure Governance
 
+In this section we will cover the following topics:
+- [What is Azure](#what-is-azure)
+- [Buying Azure](#buying-azure)
+- [Structure of Azure](#structure-of-azure)
+- [Naming and Tagging](#naming-and-tagging)
+
 ## What is Azure
 
 Let us begin with the obvious - a definition of what Microsoft Azure is and is not.
@@ -56,7 +62,7 @@ AzureChinaCloud   https://management.chinacloudapi.cn/  https://login.chinacloud
 I promised we would learn by doing, so let's start by getting yourself some Azure. In the first exercise, you'll put that new knowledge to use and set up the Azure Subscription. You will use it for the activities in the coming chapters and modules. 
 By default, we will use the Free tier for our learning purposes. The credits you get from Microsoft should be sufficient to complete all exercises, and the 30-day limit should provide a motivating sense of urgency. You might use the Azure Pass in a classroom setting, but I will keep assuming that we process with the free offering in the instructions.
 
-I strongly recommend creating a new Microsoft account for whichever option we use, Free Account or Azure Pass. You might already have one, and it might even be eligible for the free tier. However, we will be configuring tenant-level policies in some exercises, and you could lock yourself out. To stay safe, I advise having a dedicated account for learning. 
+I strongly recommend creating a new Microsoft account and using the Azure free tier. You might already have an existing Microsoft account, and it might even be eligible for the free tier. However, we will be configuring tenant-level policies in some exercises, and you could lock yourself out. To stay safe, I advise having a dedicated account for learning. 
 
 1. Use a private browser window - we want to ensure you don't sign up with an existing Microsoft or a Work/School account.
 2. Go to the [Azure website](https://azure.microsoft.com/)
@@ -65,11 +71,11 @@ I strongly recommend creating a new Microsoft account for whichever option we us
 5. Use the option to create a new account, and in the following step, choose "Get a new email address."
 6. Select an alias, set a password, and complete the process of getting a free Azure Subscription.
 7. Once the process completes, you should be redirected to the Azure Portal.
-8. Go to Subscriptions to verify whether your Azure Pass was redeemed successfully. If you see a subscription, you're good to start your labs!
+8. Go to Subscriptions to verify whether your free tier was activated successfully. If you see a subscription, you're good to start your labs!
 
 *IMPORTANT - You will need a Credit Card to verify your identity. Microsoft will not bill you unless you upgrade to a PAYG account, but you do need give them the card details to get a Free Subscription*
 
-## How is Azure structured
+## Structure of Azure
 
 There are two dimensions to Azure:
 - Geographical Location
@@ -135,7 +141,7 @@ By consciously designing our topology to use Geographies, Regions, and Availabil
 #### The Management Hierarchy
 
 In the management hierarchy of Azure, we have five primary levels:
-- Azure Active Directory – The non-optional authentication provider for Azure. This SaaS service is the root of every Azure deployment. It stores security principals like user accounts and groups and offers authentication and authorisation capabilities. We will dive deeper into Azure AD very soon. 
+- Azure Active Directory – The non-optional authentication provider for Azure. This SaaS service is the root of every Azure deployment. It stores security principals like user accounts and groups and offers authentication and authorisation capabilities. We will dive deeper into Entra ID very soon. 
 - Management Group – The optional logical container helps us efficiently manage multiple subscriptions. We commonly use it to group subscriptions that are used by a given business unit, host a specific workload or are operated by a unique team.
 - Subscription – The primary unit of purchasing Azure.
 - Resource Group – The non-optional logical container for Azure Resources. Resource groups should bring together resources that share the same lifecycle. 
@@ -152,7 +158,7 @@ We will dive deeper into all three concepts later in this course. If this doesn'
 #### Considerations for Management Groups
 
 - Are not enabled by default - you need to opt-in to get this functionality.
-- When you enable Management Groups, the platform will create the Tenant Root Group for you. The id of this group cannot be changed and is always the same as the id of your Azure AD tenant (I will explain those very soon).
+- When you enable Management Groups, the platform will create the Tenant Root Group for you. The id of this group cannot be changed and is always the same as the id of your Entra ID tenant (I will explain those very soon).
 - You can create a tree-like structure of Management Groups up to six levels deep (seven with the root).
 - But Microsoft recommends keeping the hierarchy as flat as possible
 - Consider groupings by location, environment, and business unit.
@@ -186,6 +192,7 @@ While optional, Management Groups are a fantastic tool for controlling your grow
     - Go to Management Groups in the Azure Portal and start using them
     - Pick any id/name for your first group.
 3. Move Your Azure Subscription to the new Management Group
+
 ## Naming and Tagging
 
 Naming and Tagging play a crucial role in the governance of any cloud environment, and Azure is no Exception. While there is no single way of approaching both topics, it is imperative to include them in your design considerations and implement your designs consistently. 
@@ -200,7 +207,7 @@ Therefore, I recommend you resist spending several weeks inventing the perfect n
 
 ### Tagging
 
-Tags provide metadata for your Azure Resources. They are key-value pairs of your choice that allow for enriching resources with valuable information. This information organises your resources for billing, automation, or anything else you want to achieve. 
+Tags provide metadata for your Azure Resources. They are key-value pairs of your choice that allow for enriching resources with valuable information. This information organises your resources for billing, automation, or anything else you want to achieve.
 
 You can find yourself in a situation where a well-designed Management Hierarchy and a solid Naming Convention leave little need for tagging, and that's OK. Use tags when needed to make your life easier, but I recommend avoiding duplicating information - the DRY principle works here as it does in software engineering. 
 
@@ -209,95 +216,5 @@ My favourite examples of how to use tags focus on automation:
 - deploying updates in batches,
 - configuring backup strategies. 
 
-## Azure RBAC
 
-Finally, we must discuss assigning permissions to complete the topic of governance. In Azure, we use Role-Based Access Control (RBAC) to define access rights. It provides fine-grained access management of resources in Azure​, thus allowing you to segregate duties within the organisation.
-
-### How RBAC works
-
-Let's first describe how you implement RBAC, and then I'll explain what the different terms mean:
-
->You create an *assignment* of a *role definition* to a *security principal* at a particular *scope*.
-
-In simpler words, we define who, what, and where. 
-
-- Scope - a boundary for the level of access that is required.
-- Security Principal - An object representing an entity requesting access to resources. 
-- Role Definition - A collection of permissions that lists the operations that can be performed.
-- Assignment - attaching a role definition at a selected scope. 
-
-
-### Security Principals
-
-A Security Principal for Azure RBAC in an Azure AD object (or its logical representation). I will cover Azure AD in the next post, so for now, expect that you can create RBAC assignments using the following:
-- users,
-- groups,
-- service principals,
-- managed identities.
-
-![Security Principals](Images/azureRbacSecurityPrincipal.png)
-
-
-### Role Definitions
-
-The Azure platform comes with a very long and ever-growing list of RBAC role definitions, but you can also create custom ones if you need more than the built-in options.
-
-*IMPORTANT - Be very cautious about creating custom RBAC roles. They remain your responsibility and require periodic reviews.*
-
-In the long list of role definitions, there are three fundamental ones:
-- Reader - Allows reading all information about Azure Resources.
-- Contributor - Allows reading, creating, managing, and deleting Azure Resources.
-- Owner - Extents the Contributor role by granting rights to set permissions on Azure Resources.
-- User Access Administrator - It lets you manage user access to Azure resources, but not the resources themselves, a bit like Owner-Contributor.
-
-These three generic roles include all types of resources, but there are also resource-specific roles, such as Network Contributor, which should be self-explanatory. 
-
-Every Role Definition indicates which actions are allowed or not for a chosen Resouce Provider (for now, think resource type, we will dive deeper into the topic later).
-
-![The design or RBAC Role Definitions](Images/azureRbacRolespng.png)
-
-*IMPORTANT - "Actions" and "NotActions" apply to the management plane, that is, the configuration of Azure resources. "DataActions" apply to the data plane, representing data stored within the resources, such as BLOBs stored in a Storage Account. Be careful when you only want to grant access to the management plane and not the data plane, or the other way around*
-
-You can find the complete list of built-in Azure RBAC Role Definitions in the [official documentation from Microsoft](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles).
-
-### Scopes
-
-Any of the following entities from the Management Hierarchy can act as a scope for an Azure RBAC assignment:
-- management group,
-- subscription,
-- resource group,
-- unique resource.
-
-![Scopes for Azure RBAC](Images/azureRbacScope.png)
-
-### Assignments
-
-Most RBAC assignments (called "Role Assignments") are intended to allow a security principal to perform a set of actions over the selected scope. 
-
-You can easily check the status of RBAC by navigating to the "Access Control (IAM)" section of a chosen scope in the Azure Portal. You will find the same interface on all levels of the management hierarchy.
-
-![RBAC in the Azure Portal](Images/azureRbac.png)
-
-Azure also supports "Deny Assignments," which attach a set of deny actions to a security principal at a particular scope to deny access.
-
-You do, however, need to keep a few critical facts in mind:
--  Deny assignments are currently read-only and are set by Azure Blueprints and Azure Managed Apps.
-- Deny assignments block users from performing specified actions even if a role assignment grants them access.
-- Deny assignments take precedence over role assignments.
-
-
-### Recommendations for Azure RBAC
-
-Microsoft's recommendations for RBAC include the following:
-- Grant only the access to users that they need to perform their jobs​.
-- Assign at the highest scope level that meets the requirements
-- Assign roles to groups, not users
-- Know when to create a custom role
-- Consider what happens if you have overlapping role assignments
-
-Keep those in mind for the exams, but also be mindful that this advice works best in organisations that use functional silos. 
-
-When your environment consists of cross-functional DevOps teams, I suggest giving the entire group Contributor rights on the Management Group or Subscription dedicated to the application/workload managed by the team. This way, everyone can fix an issue when they are on call. You also save yourself the headache of managing custom RBAC roles. 
-
-
-[<- Part 1 - Getting Started with Azure](partOneIndex.md) | [1.2 - Azure Active Directory ->](azureActiveDirectory.md)
+[< Part 1 Index](./partOneIndex.md) | [Home - Course Contents](../Contents.md) |  [1.2 - Azure Governance >](./entraId.md))

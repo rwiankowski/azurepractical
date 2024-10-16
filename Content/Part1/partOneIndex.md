@@ -5,9 +5,30 @@ In the first part of the training, we will cover some fundamentals to ensure you
 
 ## Contents
 
-- [1.1 Azure Governance](azureGovernance.md)
-- [1.2 Azure Active Directory](azureActiveDirectory.md)
-- [1.3 Hybrid Identity](hybridIdentity.md)
-- [1.4 Managing Azure](hybridIdentity.md)
+- [1.1 Azure Governance](./azureGovernance.mdazureGovernance.md)
+    - What is Azure
+    - Buying Azure
+    - Structure of Azure
+    - Naming and Tagging
+- [1.2 Microsoft Entra ID](./entraId.md)
+    - What is Entra ID
+    - Entra ID Users and Groups
+    - Application Service Identities
+    - Multi-Domain Setup
+    - Entra Role Based Access Control
+    - Entra ID Security
+- [1.3 Hybrid Identity](./hybridIdentity.md)
+    - Why a Hydrid Identity
+    - Directory Synchronisation
+    - Active Directory in Azure
+- [1.4 Managing Azure](./managingAzure.md)
+    - Resource Manager
+    - Azure Portal
+    - PowerShell and AZ CLI
+    - Cloud Shell
+    - Infrastructure as Code
+    - Azure Policy
+    - Azure RBAC
+    - Privilleged Identity Management
 
-[<- Part 0 - How to Prepare](Content/Prepare.md) | [1.1 - Azure Governance ->](azureGovernance.md)
+[< Part 0 - How to Prepare](../Prepare.md) | [Home - Course Contents](../Contents.md) |  [1.1 - Azure Governance >](./azureGovernance.md)
