@@ -216,4 +216,4 @@ When your environment consists of cross-functional DevOps teams, I suggest givin
 
 Privileged Identity Management (PIM) is the Just-in-Time-Access and Just-Enough-Access mechanism for Entra ID and Azure. Through it, we can make users eligible for specific permissions (RBAC assignments), and they activate those roles only when necessary. As a result, the user's accounts are not highly privileged outside of business hours or when working on tasks that do not require elevated permissions. Activations require a duration and a reason to be specified. They can also require approvals following the four-eyes principle and trigger alerts.
 
-[< 1.3 - Hybrid Identity](./hybridIdentity.md) | [Home - Course Contents](../Contents.md) |  [Part 2 >](./managingAzure.md))
+[< 1.3 - Hybrid Identity](./hybridIdentity.md) | [Home - Course Contents](../Contents.md) |  [Part 2 >](../Part2/partTwoIndex.md))

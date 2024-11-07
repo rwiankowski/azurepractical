@@ -259,18 +259,21 @@ In the example above, I talk about one Entra ID tenant inviting users from anoth
 
 *Pro Tip! - The challenge I describe above can also be solved using Access Packages. We will not look at them here, but I encourage you to add the [official documentation](https://learn.microsoft.com/en-us/azure/active-directory/governance/entitlement-management-access-package-create) to your reading list, as several valuable use cases exist for that functionality.* 
 
-### Entra ID Busines to Customer
+### Microsoft Entra External ID
 
-Azure also offers a Business to Customer service (Entra ID B2C), but the name can be misleading. You might expect similar behaviour after learning about B2B, but that is untrue. To use Entra ID B2C, you create a new, particular type of Entra ID tenant. That tenant is used solely to manage end-customer identities and their access to your applications. 
+Azure also offers a business-to-customer service used to manage end-customer identities and their access to your applications. 
 
-Entra ID B2C offers a wide range of handy features that allow you to:
-- integrate with external user stores,
-- provide single sign-on access with a user-provided identity,
-- create a custom-branded identity solution,
-- use policies to configure user journeys,
-- use progressive profiling to collect user information gradually,
-- pass user data to a 3rd party for validation.
+When using Extrenal Entra ID, we create a seprate, use case-specific directory which can authenticate and authorise end users. 
 
+Entra External ID offers a wide range of handy features like:
+- Support for various identity providers (e.g., Google, Facebook, LinkedIn, or other Azure AD tenants).
+- Multiple authentication options, including social identities, email OTP (One-Time Passcode), and custom identity providers.
+- Self-Service Registration and Profile Management.
+- Conditional Access and Security Policies.
+- Customizable User Journeys wth create branded, personalized experiences for external user onboarding and authentication flows.
+- Delegate user and access management to external administrators within their partner or customer organizations.
+
+*There is also a older version of this service called Azure AD B2C - Business to Customer.*
 
 ### Exercise 1.2.3
 
@@ -294,7 +297,7 @@ The main difference lies in the scope - while Azure can have an elaborate manage
 
 ### Role Definitions
 
-![Entra ID RBAC](Images/EntraRbac.png)
+![Entra ID RBAC](Images/AzureAdRbac.png)
 
 Because Entra ID is used for all cloud-based services offered by Microsoft, not just Azure, it has a long list of built-in role definitions. Most of those you will probably never need, but some are worth taking a closer look at:
 
@@ -371,7 +374,7 @@ Remember that Conditional Access will require Entra ID Premium - P1 for most fea
 
 When you create a new policy, you can leave the default setting "Report-only" to evaluate its behaviour before you start limiting users' sign-ins. But to ensure the security limitations you configure are in place, you must flip the switch to "On".
 
-![Entra ID Conditional Access Report-Only mode](Images/EntraCaReport.png)
+![Entra ID Conditional Access Report-Only mode](Images/AzureAdCaReport.png)
 
 Setting up conditional access is one of the first things I recommend configuring in your Entra ID tenant. Start with a simple set to provide a solid security baseline and build on top of that - limiting access to the Azure Management plane and enforcing MFA for all users should be sufficient. Do exclude your break-glass accounts, though!
 
@@ -409,9 +412,9 @@ The MFA service provided by Entra ID supports the following forms of additional 
 - SMS
 - Voice call
 
-At the time of writing, we still have access to the legacy (I'm typically careful with the l-word, but a single glance at the UI takes us back in time more than a few years) interface for configuring MFA settings, but we also have access to the new one. The old interface is available via the "Multifactor authentication" section under "Security" in the Entra ID Blade, and the new one is under "Authentication methods". The details of the migration are described [here](https://learn.microsoft.com/en-gb/azure/active-directory/authentication/how-to-authentication-methods-manage).
+For a long time, MFA settigs were managed primarilly using the "Per-User MFA authentication" settings as part of a legacy interface for configuring MFA settings. That standalone site was recently deprecated and we now manage MFA settings via an integrated experience. If you sill have any legacy MFA policies, you shoud migrate them to the new experience. The details of the migration are described [here](https://learn.microsoft.com/en-gb/azure/active-directory/authentication/how-to-authentication-methods-manage).
 
-![MFA Configuration Options](Images/EntraMfa.png)
+![MFA Configuration Options](Images/AzureAdMfa.png)
 
 Multi-factor authentication is a relatively simple yet potent protection mechanism. A common saying reminds us that "identity is the new perimeter", and enforcing MFA is the best thing we can do to help secure users in your organisation.
 
