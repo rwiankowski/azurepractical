@@ -18,7 +18,7 @@ In the first part of the training, we will cover some fundamentals to ensure you
     - Entra Role Based Access Control
     - Entra ID Security
 - [1.3 Hybrid Identity](./hybridIdentity.md)
-    - Why a Hydrid Identity
+    - Why a Hybrid Identity
     - Directory Synchronisation
     - Active Directory in Azure
 - [1.4 Managing Azure](./managingAzure.md)
@@ -29,6 +29,6 @@ In the first part of the training, we will cover some fundamentals to ensure you
     - Infrastructure as Code
     - Azure Policy
     - Azure RBAC
-    - Privilleged Identity Management
+    - Privileged Identity Management
 
 [< Part 0 - How to Prepare](../Prepare.md) | [Home - Course Contents](../Contents.md) |  [1.1 - Azure Governance >](./azureGovernance.md)

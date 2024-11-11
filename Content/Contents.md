@@ -15,7 +15,7 @@
 
 This training is divided into seven parts, which should, in total, take around six days of learning. When I teach this course in a classroom setting, I expect six hours of focused work per day, split the material into two parts, and use the following plan:
 - Week 1 - Monday - Wednesday to cover parts One, Two, and Three
-- Week 2 - break
+- Week 2 - Break
 - Week 3 - Monday - Wednesday to cover parts Four to Seven
 
 In such a setting, we immerse ourselves in the material for three days to get plenty of hands-on time, but we also take a week and a half of a break in between, giving you time to catch up on other work and review the parts which still make you feel uneasy. We also stay well within the 30 days that we have to use our credits (more on that later).
@@ -26,4 +26,5 @@ The structure which I present above assumes thirty-six hours of learning in tota
 
 The course is designed to give you as much helpful knowledge as possible within a limited time. It will show you what's out there, when to use which service, and what pitfalls to watch out for. But if you start working with a Customer, you will find yourself returning to the documentation frequently. Still, please remember that if you have no prior Azure experience, this time is too little to become a skilled cloud engineer. Similarly, if you aim to get certified, you will still need to invest time in learning and practicing. 
 
-####  [<- Home](../README.md) | [Part 0 - How to Prepare ->](./Prepare.md)
+
+[<- Home](../README.md) | [Part 0 - How to Prepare ->](./Prepare.md)

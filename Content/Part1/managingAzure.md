@@ -8,7 +8,7 @@ In this section we will cover the following topics:
 - [Infrastructure as Code](#infrastructure-as-code)
 - [Azure Policy](#azure-policy)
 - [Azure RBAC](#azure-rbac)
-- [Privilleged Identity Management](#privileged-identity-management)
+- [Privileged Identity Management](#privileged-identity-management)
 
 ## Resource Manager
 
@@ -29,7 +29,7 @@ Functionally, both tools are on par. Most services yield similar results with bo
 
 #### PowerShell 
 
-Install on MacOs:
+Install on macOs:
 
 ```
 ➜ brew install powershell
@@ -89,7 +89,7 @@ We also need to select the subscription we want to work with:
 
 If you want to run the tools locally but would rather avoid installing them, you can run them from a DOCKER container.
 
-#### PowerSheel
+#### PowerShell
 
 ```
 ➜ docker run -it mcr.microsoft.com/azure-powershell pwsh
@@ -145,9 +145,9 @@ In simpler words, we define who, what, and where.
 ### Security Principals
 
 A Security Principal for Azure RBAC in an Entra ID object (or its logical representation). I will cover Entra ID in the next part, so for now, expect that you can create RBAC assignments using the following:
-- users,
-- groups,
-- service principals,
+- users.
+- groups.
+- service principals.
 - managed identities.
 
 ![Security Principals](Images/azureRbacSecurityPrincipal.png)
@@ -166,7 +166,7 @@ In the long list of role definitions, there are three fundamental ones:
 
 These three generic roles include all types of resources, but there are also resource-specific roles, such as Network Contributor, which should be self-explanatory. 
 
-Every Role Definition indicates which actions are allowed or not for a chosen Resouce Provider (for now, think resource type, we will dive deeper into the topic later).
+Every Role Definition indicates which actions are allowed or not for a chosen Resource Provider (for now, think resource type, we will dive deeper into the topic later).
 
 ![The design or RBAC Role Definitions](Images/azureRbacRolespng.png)
 
@@ -177,9 +177,9 @@ You can find the complete list of built-in Azure RBAC Role Definitions in the [o
 ### Scopes
 
 Any of the following entities from the Management Hierarchy can act as a scope for an Azure RBAC assignment:
-- management group,
-- subscription,
-- resource group,
+- management group.
+- subscription.
+- resource group.
 - unique resource.
 
 ![Scopes for Azure RBAC](Images/azureRbacScope.png)
@@ -203,10 +203,10 @@ You do, however, need to keep a few critical facts in mind:
 
 Microsoft's recommendations for RBAC include the following:
 - Grant only the access to users that they need to perform their jobs​.
-- Assign at the highest scope level that meets the requirements
-- Assign roles to groups, not users
-- Know when to create a custom role
-- Consider what happens if you have overlapping role assignments
+- Assign at the highest scope level that meets the requirements.
+- Assign roles to groups, not users.
+- Know when to create a custom role.
+- Consider what happens if you have overlapping role assignments.
 
 Keep those in mind for the exams, but also be mindful that this advice works best in organisations that use functional silos. 
 
@@ -216,4 +216,4 @@ When your environment consists of cross-functional DevOps teams, I suggest givin
 
 Privileged Identity Management (PIM) is the Just-in-Time-Access and Just-Enough-Access mechanism for Entra ID and Azure. Through it, we can make users eligible for specific permissions (RBAC assignments), and they activate those roles only when necessary. As a result, the user's accounts are not highly privileged outside of business hours or when working on tasks that do not require elevated permissions. Activations require a duration and a reason to be specified. They can also require approvals following the four-eyes principle and trigger alerts.
 
-[< 1.3 - Hybrid Identity](./hybridIdentity.md) | [Home - Course Contents](../Contents.md) |  [Part 2 >](../Part2/partTwoIndex.md))
+[< 1.3 - Hybrid Identity](./hybridIdentity.md) | [Home - Course Contents](../Contents.md) |  [Part 2 >](../Part2/partTwoIndex.md)

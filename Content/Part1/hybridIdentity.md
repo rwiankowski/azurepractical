@@ -1,7 +1,7 @@
 # 1.3 - Hybrid Identity
 
-In this section will will cover the following topics:
-- [Why a Hydrid Identity](#why-a-hybrid-identity)
+In this section we will cover the following topics:
+- [Why a Hybrid Identity](#why-a-hybrid-identity)
 - [Directory Synchronisation](#directory-synchronisation)
 - [Active Directory in Azure](#active-directory-in-azure)
 
@@ -13,7 +13,7 @@ Active Directory (AD), which we often refer to as WS AD or AD DS, was previewed 
 
 As a result, when a decade later, Microsoft launched Azure, many organisations were long-time users of Active Directory Domain Services. They had, sometimes extensive and complex, deployments of AD that included all the information about their users, group assignments, computers and more. Allowing organisations to bring those identities to their cloud environments made sense. Thankfully, Microsoft was already getting AD DS identities into the cloud for the Business Productivity Online Standard Suite, the predecessor of Office 365.
 
-*IMPORTANT - Please keep in mind that until the farily recent name change, Entra ID was called Azure AD. While the change is now fully solidified in the documentation, it might not yet be the case with software components. Don't be surprised if some components still refer to Azure AD or AAD.*
+*IMPORTANT - Please keep in mind that until the family recent name change, Entra ID was called Azure AD. While the change is now fully solidified in the documentation, it might not yet be the case with software components. Don't be surprised if some components still refer to Azure AD or AAD.*
 
 ## Directory Synchronisation
 
@@ -58,7 +58,7 @@ Once you've made the critical decision regarding user sing-ins, you'll have to c
 
 Directory synchronisation can be a critical component of your hybrid cloud environment. But even if you don't find yourself overly reliant on Entra ID Connect, monitoring synchronisation for any issues is a good idea. Entra Connect Health is a service designed just for that. You can find it in the Azure Portal under the Azure Active Directory blade in the Entra ID Connect section. 
 
-![Entra ID Connect Health](images/azureAdConnecHealth.png)
+![Entra ID Connect Health](Images/azureAdConnectHealth.png)
 
 The tool will provide rich insights into alerts, performance and usage metrics. To install and configure the monitoring agents, [follow the official documentation](https://learn.microsoft.com/en-us/azure/active-directory/hybrid/connect/how-to-connect-health-agent-install#install-the-agent-for-ad-fs). 
 
@@ -82,8 +82,8 @@ Also, please keep in mind that once the new tool catches up on the missing funct
 Getting our Active Directory users and groups synchronised to Entra ID is handy. Still, it is only one of the two sides to hybrid identities in Azure. More often than not, especially when working with applications designed for the  Windows Server ecosystem, you will need traditional Active Directory Domain Services in your Azure environment. 
 
 When that's the case, you have two options:
-- Extend your existing AD DS to Azure
-- Deploy Entra ID Domain Services
+- Extend your existing AD DS to Azure.
+- Deploy Entra ID Domain Services.
 
 We'll look at both to understand the better choice in your circumstances.
 
@@ -127,4 +127,4 @@ If none of the features unavailable in the managed Active Directory Domain Servi
 
 **IMPORTANT - When you deploy an Entra ID Domain Services instance, you must provide a subnet of a Virtual Network that the managed service will use to deploy Domain Controllers. The Network Security Group, which acts as the subnet's Access Control List, requires particular rules. Unfortunately, some of them cannot be configured via the Azure Portal. To work around this issue, allow the Entra DS wizard to create the subnet or use a programmatic deployment for the NSG. Even though it might sound like back magic right now, please keep it in mind. It will all make perfect sense soon.**
 
-[< 1.2 - Microsoft Entra ID](./entraId.md) | [Home - Course Contents](../Contents.md) |  [1.4 - Azure Governance >](./managingAzure.md))
+[< 1.2 - Microsoft Entra ID](./entraId.md) | [Home - Course Contents](../Contents.md) |  [1.4 - Azure Governance >](./managingAzure.md)

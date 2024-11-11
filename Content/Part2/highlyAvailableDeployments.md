@@ -8,10 +8,10 @@ In this section we will cover the following topics:
 ### Azure Load Balancer
 
 
-### Excercise 2.3.1
+### Exercise 2.3.1
 
 In the previous section we deployed an entry-level setup which included a file server and a web server. It worked very well, but we had to configure everything manually and we lacked high availability. 
-In this excercise, we will try to create a new, more advanced deployment.
+In this exercise, we will try to create a new, more advanced deployment.
 
 1) Create yourself a new Resource Group.
     - You can call it whatever you like, but I will keep referring to it as App2-Network-RG.
@@ -65,14 +65,14 @@ In this excercise, we will try to create a new, more advanced deployment.
 ### Azure Batch
 
 
-### Excercise 2.3.2
+### Exercise 2.3.2
 
 The two Virtual Machines you just deployed give us a highly-available and zone-redundant setup - that is quite the upgrade for business continuity. And while you didn't need to interactively log into the the Virtual Machines to configure IIS, you still had to use Cloud Shell to deploy the extensions. 
 To take things even further, we will now replace the VMs with a VM Scale Set.
 
 1) Clean up your App2 VMs
-    - We won't be needing them any more.
-    - How about simply removing the entire Resouce Group?
+    - We won't be needing them anymore.
+    - How about simply removing the entire Resource Group?
 
 2) Create a new Resource Group.
     - You can call it whatever you like, but I will keep referring to it as App2-VMSS-RG.

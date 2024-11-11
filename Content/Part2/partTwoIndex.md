@@ -13,9 +13,9 @@
     - VM Availability Options
     - Azure Bastion
     - Disk Encryption
-    - VM Extentions
+    - VM Extensions
     - Azure Dedicated Hosts
-- [2.3 Highly-Available Desployments](./highlyAvailableDeployments.md)
+- [2.3 Highly-Available Deployments](./highlyAvailableDeployments.md)
     - Azure Load Balancer
     - Virtual Machine Scale Sets
     - Azure Batch
