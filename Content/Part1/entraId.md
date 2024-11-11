@@ -68,7 +68,7 @@ The process of configuring a custom domain name is relatively simple and quick. 
 
 ### Entra ID vs. AD
 
-Active Directory, also known as Active Directory Domain Services (AD DS) or Windows Server Active Directory (WS AD), is a service provided as part of the Windows Server operating system. It acts as a data store for users and devices on a local network and provides authentication and authentication mechanisms. While that description could also fit Entra ID (and there is this naming similarity), it is a fundamentally different service. The key differences are shown in the following table:
+Active Directory, also known as Active Directory Domain Services (AD DS) or Windows Server Active Directory (WS AD), is a service provided as part of the Windows Server operating system. It acts as a data store for users and devices on a local network and provides authentication and authorisation mechanisms. While that description could also fit Entra ID (and there is this naming similarity), it is a fundamentally different service. The key differences are shown in the following table:
 
 | Characteristic | Entra ID | WS AD |
 | -------------- | -------- | ----- |
@@ -174,7 +174,7 @@ When it comes to Groups, in Entra ID, we have two options:
 - **Microsoft 365** provides collaboration opportunities by giving group members access to a shared mailbox, calendar, files, SharePoint sites, and more. It lets you provide people outside of your organization access to the group. Members can only include users. Owners can consist of users and service principals. 
 
 But next to that, we have several assignment options:
-- **Static** - in which you manually (or statically) assign group membership.
+- **Assigned** - in which you manually (or statically) assign group membership.
 - **Dynamic** - in which the platform automatically assigns group membership for users or devices based on their attributes.
 
 *Important - a dynamically assigned group can include only user objects or only devices, never both.* 
@@ -205,7 +205,7 @@ In Azure, we use different mechanisms. We will look at them in the following sec
 
 ### Service Principals
 
-![Entra ID App Registrations](Images/azureADAppRegistrations.png)
+![Entra ID App Registrations](Images/azureAdAppRegistrations.png)
 
 The first option is to use Service Principals (SPNs), which you can find in the Azure portal under App Registrations. An SPN is an Entra ID identity that an application (can be external) will use to authenticate to Azure resources. The authentication can use a secret (password) or a certificate.
 
@@ -297,7 +297,7 @@ The main difference lies in the scope - while Azure can have an elaborate manage
 
 ### Role Definitions
 
-![Entra ID RBAC](Images/AzureAdRbac.png)
+![Entra ID RBAC](Images/azureAdRbac.png)
 
 Because Entra ID is used for all cloud-based services offered by Microsoft, not just Azure, it has a long list of built-in role definitions. Most of those you will probably never need, but some are worth taking a closer look at:
 
@@ -414,7 +414,7 @@ The MFA service provided by Entra ID supports the following forms of additional 
 
 For a long time, MFA settigs were managed primarilly using the "Per-User MFA authentication" settings as part of a legacy interface for configuring MFA settings. That standalone site was recently deprecated and we now manage MFA settings via an integrated experience. If you sill have any legacy MFA policies, you shoud migrate them to the new experience. The details of the migration are described [here](https://learn.microsoft.com/en-gb/azure/active-directory/authentication/how-to-authentication-methods-manage).
 
-![MFA Configuration Options](Images/AzureAdMfa.png)
+![MFA Configuration Options](Images/azureAdMfa.png)
 
 Multi-factor authentication is a relatively simple yet potent protection mechanism. A common saying reminds us that "identity is the new perimeter", and enforcing MFA is the best thing we can do to help secure users in your organisation.
 
