@@ -26,4 +26,5 @@ The structure which I present above assumes thirty-six hours of learning in tota
 
 The course is designed to give you as much helpful knowledge as possible within a limited time. It will show you what's out there, when to use which service, and what pitfalls to watch out for. But if you start working with a Customer, you will find yourself returning to the documentation frequently. Still, please remember that if you have no prior Azure experience, this time is too little to become a skilled cloud engineer. Similarly, if you aim to get certified, you will still need to invest time in learning and practicing. 
 
-####  [<- Home](../README.md) | [Part 0 - How to Prepare ->](../Content/Prepare.md)
+
+[<- Home](../README.md) | [Part 0 - How to Prepare ->](./Prepare.md)

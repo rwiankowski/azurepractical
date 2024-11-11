@@ -58,6 +58,7 @@ The built-in domain name will always be there with you, but you can also add a c
 
 ![Configure Custom Domain](Images/azureAdCustomDomain.png)
 
+
 The process of configuring a custom domain name is relatively simple and quick. It includes the following steps:
 - Register a publicly-resolvable domain with a registrar of your choice.
 - Add the custom name in Entra ID (you will need Global Administrator permissions).
@@ -68,7 +69,7 @@ The process of configuring a custom domain name is relatively simple and quick. 
 
 ### Entra ID vs. AD
 
-Active Directory, also known as Active Directory Domain Services (AD DS) or Windows Server Active Directory (WS AD), is a service provided as part of the Windows Server operating system. It acts as a data store for users and devices on a local network and provides authentication and authentication mechanisms. While that description could also fit Entra ID (and there is this naming similarity), it is a fundamentally different service. The key differences are shown in the following table:
+Active Directory, also known as Active Directory Domain Services (AD DS) or Windows Server Active Directory (WS AD), is a service provided as part of the Windows Server operating system. It acts as a data store for users and devices on a local network and provides authentication and authorisation mechanisms. While that description could also fit Entra ID (and there is this naming similarity), it is a fundamentally different service. The key differences are shown in the following table:
 
 | Characteristic | Entra ID | WS AD |
 | -------------- | -------- | ----- |
