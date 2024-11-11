@@ -29,7 +29,7 @@ The table below describes the options we have to procure Azure Subscriptions.
 | Acronym | Model | Setup | Discounts |
 |---------|-------|-------|-----------|
 | - | Free | Complimentaty account | 200$ USD credits for 30 days + limited free access for 12 months |
-| PAYG | Pay-As-You-Go | Sign-up online with a Credit Card | None, publicly availabile list prices apply |
+| PAYG | Pay-As-You-Go | Sign-up online with a Credit Card | None, publicly available list prices apply |
 | CSP | [Cloud Solutions Provider](https://learn.microsoft.com/en-us/partner-center/csp-overview) | Buy via a Microsoft Partner | Negotiated with the CSP partner, typically limited |
 | EA | [Enterprise Account](https://www.microsoft.com/en-us/licensing/licensing-programs/enterprise) | Buy directly from Microsoft via the volume licensing program previously used for software liceses | Negotiated with Mictosoft and based on the total value of the commitment, can be significant |
 
@@ -54,7 +54,7 @@ AzureCloud        https://management.azure.com/         https://login.microsofto
 AzureChinaCloud   https://management.chinacloudapi.cn/  https://login.chinacloudapi.cn/   Built-in
 ```
 
-*Fun fact - in the past, we also had Azure Germany (operated by T-Systems under license from Microsoft). In 2018 Microsoft stopped accepting new customers or adding new features to the German sovereign cloud. It was discontinued in late 2021. Today, the general Azure Cloud has two data centre regions in Germany.*
+*Fun fact - in the past, we also had Azure Germany (operated by T-Systems under license from Microsoft). In 2018 Microsoft stopped accepting new customers or adding new features to the German sovereign cloud. It was discontinued in late 2021. Today, the general Azure Cloud has two data center regions in Germany.*
 
 
 ### Exercise 1.1.1
@@ -117,7 +117,7 @@ By design, at least one Region with a Geo will Support Availability Zones.
 
 #### Availability Zones
 
-Availability Zones represent separate data centre facilities within the same region. What is crucial is that they:
+Availability Zones represent separate data center facilities within the same region. What is crucial is that they:
 - are located tens of kilometers apart,
 - are connected by dedicated high-throughput and low-latency fibre-optic networks,
 - have independent power, cooling, and networking.
@@ -141,7 +141,7 @@ By consciously designing our topology to use Geographies, Regions, and Availabil
 #### The Management Hierarchy
 
 In the management hierarchy of Azure, we have five primary levels:
-- Azure Active Directory – The non-optional authentication provider for Azure. This SaaS service is the root of every Azure deployment. It stores security principals like user accounts and groups and offers authentication and authorisation capabilities. We will dive deeper into Entra ID very soon. 
+- Azure Entra ID (formerly known as Azure Active Directory) – The non-optional authentication provider for Azure. This SaaS service is the root of every Azure deployment. It stores security principals like user accounts and groups and offers authentication and authorisation capabilities. We will dive deeper into Entra ID very soon. 
 - Management Group – The optional logical container helps us efficiently manage multiple subscriptions. We commonly use it to group subscriptions that are used by a given business unit, host a specific workload or are operated by a unique team.
 - Subscription – The primary unit of purchasing Azure.
 - Resource Group – The non-optional logical container for Azure Resources. Resource groups should bring together resources that share the same lifecycle. 
