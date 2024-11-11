@@ -8,7 +8,7 @@ In this section we will cover the following topics:
 
 ## What is Azure
 
-Let us begin with the obvious - a definition of what Microsoft Azure is and is not.
+Let us begin with the obvious definition of what Microsoft Azure is and is not.
 
 According to Microsoft:
 
@@ -43,7 +43,7 @@ It's also important to mention that most of us use (probably without realising) 
 
 All three clouds are separate, with different management APIs and identity services used to grant access. A programmatic check will tell us the following:
 
-A programatic check will tell us the following:
+A programmatic check will tell us the following:
 ```
 PS /home/rwiankowski> Get-AzEnvironment 
 
@@ -67,7 +67,7 @@ I strongly recommend creating a new Microsoft account and using the Azure free t
 1. Use a private browser window - we want to ensure you don't sign up with an existing Microsoft or a Work/School account.
 2. Go to the [Azure website](https://azure.microsoft.com/)
 3. Select "Start for Free" and then "Start Free."
-4. On the Sign In page, you'll find a small print "No account? Create one!"
+4. On the Sign-in page, you'll find a small print "No account? Create one!"
 5. Use the option to create a new account, and in the following step, choose "Get a new email address."
 6. Select an alias, set a password, and complete the process of getting a free Azure Subscription.
 7. Once the process completes, you should be redirected to the Azure Portal.
@@ -78,8 +78,8 @@ I strongly recommend creating a new Microsoft account and using the Azure free t
 ## Structure of Azure
 
 There are two dimensions to Azure:
-- Geographical Location
-- Logical Structure
+- Geographical Location.
+- Logical Structure.
 
 Let's explore each of those dimensions in detail.
 
@@ -118,11 +118,11 @@ By design, at least one Region with a Geo will Support Availability Zones.
 #### Availability Zones
 
 Availability Zones represent separate data center facilities within the same region. What is crucial is that they:
-- are located tens of kilometers apart,
-- are connected by dedicated high-throughput and low-latency fibre-optic networks,
-- have independent power, cooling, and networking.
+- Are located tens of kilometers apart.
+- Are connected by dedicated high-throughput and low-latency fibre-optic networks.
+- Have independent power, cooling, and networking.
 
-Thus Availability Zones protect against local outages within a specific region.
+Thus, Availability Zones protect against local outages within a specific region.
 
 Some Azure services are zone-redundant by default, some can be configured to span multiple Availability Zones, and others can be zonal - deployed to a specific zone. 
 
@@ -145,31 +145,32 @@ In the management hierarchy of Azure, we have five primary levels:
 - Management Group – The optional logical container helps us efficiently manage multiple subscriptions. We commonly use it to group subscriptions that are used by a given business unit, host a specific workload or are operated by a unique team.
 - Subscription – The primary unit of purchasing Azure.
 - Resource Group – The non-optional logical container for Azure Resources. Resource groups should bring together resources that share the same lifecycle. 
-- Resource - the service or component which we want to use. Every resource must be deployed to a specific Azure Region and a Resource Group.to use. Every resource must be deployed to a specific Azure Region and a Resource Group.
+- Resource - The service or component which we want to use. Every resource must be deployed to a specific Azure Region and a Resource Group to use.
 
 ![Management Hierarchy](Images/managementiHierachy.png)
 
 Management Groups, Subscriptions, and Resource Groups all allow for the following:
-- granting RBAC permissions (access rights flow down the hierarchy in a waterfall way)
-- assigning policies
-- scoping costs
+- Granting RBAC permissions (access rights flow down the hierarchy in a waterfall way).
+- Assigning policies.
+- Scoping costs.
 
 We will dive deeper into all three concepts later in this course. If this doesn't make complete sense, the upcoming chapters should address this issue.
+
 #### Considerations for Management Groups
 
-- Are not enabled by default - you need to opt-in to get this functionality.
+- Are enabled by default - Previously this was not enabled by default and you needed to opt-in to get this functionality.
 - When you enable Management Groups, the platform will create the Tenant Root Group for you. The id of this group cannot be changed and is always the same as the id of your Entra ID tenant (I will explain those very soon).
 - You can create a tree-like structure of Management Groups up to six levels deep (seven with the root).
-- But Microsoft recommends keeping the hierarchy as flat as possible
+- But Microsoft recommends keeping the hierarchy as flat as possible.
 - Consider groupings by location, environment, and business unit.
-- Having two specific Management Groups - Sandbox and Decommissioned- is standard practice. The names should be relatively self-explanatory. 
+- Having two specific Management Groups, Sandbox and Decommissioned, is standard practice. The names should be relatively self-explanatory. 
 
 ![Management Group Levels](Images/managementGroups.png)
 
 #### Considerations for Subscriptions
 
-- The Subscription is the primary unit of purchasing and governance in Azure (like an AWS account or a GCP Project)
-- You need at least one and can use only one subscription, but I recommend following the recent trend of subscription democratisation - use at least one subscription per application/workload and, ideally, several to isolate DTAP environments
+- The Subscription is the primary unit of purchasing and governance in Azure (like an AWS account or a GCP Project).
+- You need at least one and can use only one subscription, but I recommend following the recent trend of subscription democratisation - use at least one subscription per application/workload and, ideally, several to isolate DTAP environments.
 - I recommend a one-to-many relationship between teams and subscriptions and strongly advise against many-to-one/many relationships. In the latter scenario, teams will get into each other's way. 
 - Services and features (called Resource Providers) are enabled per subscription. You can use this granularity to control which resources can be deployed in various subscriptions.
 - Subscriptions have quotas that limit the number of resources of a given type that can be created in a given subscription. Some of those limits are soft and can be quickly increased via a support request, but others are hard and will force you to add additional subscriptions. You can find details info on this topic in the [official Microsoft documentation](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits).
@@ -188,22 +189,25 @@ While optional, Management Groups are a fantastic tool for controlling your grow
 
 1. If you're not logged into the Azure Portal, please do so. 
     - Be sure to use the new Microsoft Account you created while signing up for Azure.
-2. Enable Management Groups in your environment
-    - Go to Management Groups in the Azure Portal and start using them
-    - Pick any id/name for your first group.
-3. Move Your Azure Subscription to the new Management Group
+2. Create a new Management Group, as child of the Root Tenant Group:
+    - Go to Management Groups in the Azure Portal.
+    - Click on Create.
+    - Pick any id/name for your group.
+    - Click Submit. It will take about a minute to propagate.
+3. Move Your Azure Subscription to the new Management Group.
 
 ## Naming and Tagging
 
 Naming and Tagging play a crucial role in the governance of any cloud environment, and Azure is no Exception. While there is no single way of approaching both topics, it is imperative to include them in your design considerations and implement your designs consistently. 
 
 ### Naming
+
 As one of the industry's legends quickly reminds us, creating a good naming convention is among the most challenging tasks an IT professional must tackle. At the same time, as experience teaches us, it doesn't matter how it looks; what matters most is that you have one and stick to it. 
 Therefore, I recommend you resist spending several weeks inventing the perfect naming convention. Instead, make sure that it does the following:
-- allows the users to quickly and easily identify the resources they are looking for,
-- complies with the requirements set by the platform regarding uniqueness and character limits,
-- provides room and flexibility for exceptions,
-- supports automation mechanisms (for example, by using consistent delimiters).
+- Allows the users to quickly and easily identify the resources they are looking for.
+- Complies with the requirements set by the platform regarding uniqueness and character limits.
+- Provides room and flexibility for exceptions.
+- Supports automation mechanisms (for example, by using consistent delimiters).
 
 ### Tagging
 
@@ -212,9 +216,9 @@ Tags provide metadata for your Azure Resources. They are key-value pairs of your
 You can find yourself in a situation where a well-designed Management Hierarchy and a solid Naming Convention leave little need for tagging, and that's OK. Use tags when needed to make your life easier, but I recommend avoiding duplicating information - the DRY principle works here as it does in software engineering. 
 
 My favourite examples of how to use tags focus on automation:
-- Scaling, both vertical (changing the SKU) and horizontal (starting/stopping instances), based on the demand or time/date,
-- deploying updates in batches,
-- configuring backup strategies. 
+- Scaling, both vertical (changing the SKU) and horizontal (starting/stopping instances), based on the demand or time/date.
+- Deploying updates in batches.
+- Configuring backup strategies. 
 
 
-[< Part 1 Index](./partOneIndex.md) | [Home - Course Contents](../Contents.md) |  [1.2 - Azure Governance >](./entraId.md))
+[< Part 1 Index](./partOneIndex.md) | [Home - Course Contents](../Contents.md) |  [1.2 - Azure Entra ID >](./entraId.md)

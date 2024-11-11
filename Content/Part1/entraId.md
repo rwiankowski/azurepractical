@@ -12,13 +12,13 @@ In this section we will cover the following topics:
 
 Historically, when we got to the part where we talk about identities in Azure, I would say:
 
->Azure starts with Azure Active Directory (which we often call AzureAD or use the acronym AAD). The name of the service is, however, misleading. While we cannot use Azure without Azure AD, it is not a part of Azure, and many customers use it without ever thinking of deploying any Azure Resources. Azure Active Directory is also the backbone of other cloud-based services offered by Microsoft, like Microsoft 365 and Dynamics 365. 
+> Azure starts with Azure Active Directory (which we often call AzureAD or use the acronym AAD). The name of the service is, however, misleading. While we cannot use Azure without Azure AD, it is not a part of Azure, and many customers use it without ever thinking of deploying any Azure Resources. Azure Active Directory is also the backbone of other cloud-based services offered by Microsoft, like Microsoft 365 and Dynamics 365. 
 
 And as we went on, I would keep repeating:
 
->Azure AD is not Azure!
+> Azure AD is not Azure!
 
-Not too long ago, however, Micosoft rebranded Azure AD to Entra ID. And while I'm usually cynical about rebranding exercises, this one does the service justice. I mention this because such changes take a long time to solidify in the minds of people who have been using this technology for years. With that in mind, you'll probably still hear me and others use the name Azure AD, so please remember:
+Not too long ago, however, Microsoft rebranded Azure AD to Entra ID. And while I'm usually cynical about rebranding exercises, this one does the service justice. I mention this because such changes take a long time to solidify in the minds of people who have been using this technology for years. With that in mind, you'll probably still hear me and others use the name Azure AD, so please remember:
 
 > Azure AD == Entra ID
 
@@ -26,13 +26,13 @@ From a technical perspective, though, the name change doesn't mean much, and you
 
 And before we move on, just one more reminder:
 
->Entra ID is not Azure!
+> Entra ID is not Azure!
 
 Today, though I will say - Azure starts with Entra ID (previously called AzureAD and often referred to as AAD). There is no other way. Even if you want to use a third-party identity management solution like Okta, you will still need to use Entra ID in between. So you have no option - you must get to know it well. 
 
 Entra ID is a Software-as-a-Service (SaaS) enterprise Identity and Access Management (IAM) solution. It is a cloud-based and multitenant service that offers:
-- **Authentication** - it verifies users' identities and issues access tokens,
-- **Authorisation** - it verifies users' access permissions to Enterprise Applications, which can be published via Entra ID.
+- **Authentication** - It verifies users' identities and issues access tokens.
+- **Authorisation** - It verifies users' access permissions to Enterprise Applications, which can be published via Entra ID.
 
 Entra ID offers a wide range of advanced security, collaboration, and other features besides the core identity and access capabilities. We will only explore some of them, as their scope is big enough to make it into a separate course. 
 
@@ -52,19 +52,19 @@ Every Entra ID tenant has a domain name used to identify the instance of the Ent
 
 > \<something of your choice\>.onmicrosoft.com
 
-The domain name must be globally unique because ADD is a multitenant SaaS offering.
+The domain name must be globally unique because Entra ID is a multitenant SaaS offering.
 
 The built-in domain name will always be there with you, but you can also add a custom domain name to make your Accounts' User Principal Names (UPNs) more user-friendly.
 
-![Configure Custom Domain](Images/EntraCustomDomain.png)
+![Configure Custom Domain](Images/azureAdCustomDomain.png)
 
 The process of configuring a custom domain name is relatively simple and quick. It includes the following steps:
-- Register a publicly-resolvable domain with a registrar of your choice
-- Add the custom name in Entra ID (you will need Global Administrator permissions)
-- Create the verification records in your domain's lookup zone (Azure will ask you to create a specific TXT or MX record to verify ownership of the custom name)
-- Wait for the DNS change to propagate and complete the process
+- Register a publicly-resolvable domain with a registrar of your choice.
+- Add the custom name in Entra ID (you will need Global Administrator permissions).
+- Create the verification records in your domain's lookup zone (Azure will ask you to create a specific TXT or MX record to verify ownership of the custom name).
+- Wait for the DNS change to propagate and complete the process.
 
-![Verify Custom Domain](Images/EntraCustomDomainVerify.png)
+![Verify Custom Domain](Images/azureAdCustomDomainVerify.png)
 
 ### Entra ID vs. AD
 
@@ -81,24 +81,24 @@ Active Directory, also known as Active Directory Domain Services (AD DS) or Wind
 Like with WS AD, users' devices can authenticate to Entra ID. However, the situation is slightly more complex, as we have several models available:
 
 - Entra ID-registered devices
-    - Intended for the BYOD (Bring Your Own Device) scenarios
-    - Users sign in to their devices with local accounts
-    - An Entra ID account (work/school) grants access to resources
-    - Limited cloud security feature support
-    - Supports Windows 10+, iOS, Android and MacOS
+    - Intended for the BYOD (Bring Your Own Device) scenarios.
+    - Users sign in to their devices with local accounts.
+    - An Entra ID account (work/school) grants access to resources.
+    - Limited cloud security feature support.
+    - Supports Windows 10+, iOS, Android and macOS.
 
 - Entra ID-joined devices
-    - Intended for cloud-first or cloud-only organizations (implemented only with organization-owned devices)
-    - Users can only sign in to their devices with Entra ID accounts (work/school)
-    - Rich cloud security feature support
-    - Supports Windows 10+ and Windows Server 2019+ (in Azure)
+    - Intended for cloud-first or cloud-only organizations (implemented only with organization-owned devices).
+    - Users can only sign in to their devices with Entra ID accounts (work/school).
+    - Rich cloud security feature support.
+    - Supports Windows 10+ and Windows Server 2019+ (in Azure).
 
 - Hybrid Azure-AD joined devices
-    - Intended for hybrid organizations with existing on-premises AD infrastructure
-    - Users can only sign in to their devices with organisational accounts 
-    - Limited cloud security feature support
-    - Supports Group Policy for management
-    - Supports Windows 8.1+ and Windows Server 2008+
+    - Intended for hybrid organizations with existing on-premises AD infrastructure.
+    - Users can only sign in to their devices with organisational accounts.
+    - Limited cloud security feature support.
+    - Supports Group Policy for management.
+    - Supports Windows 8.1+ and Windows Server 2008+.
 
 ### Entra ID Editions
 
@@ -139,9 +139,9 @@ As you might expect from an IAM (Identity and Access Management) tool, user and 
 ### Users
 
 In Entra ID, we have three types of users:
-- Cloud Identities - created directly in Entra ID either via the portal graphical interface or programmatically as part of a scripted job
-- Synchronised Identities - created in Azure by AD Connect - the WS AD synchronisation tool, which we will cover in the next chapter
-- Guest Users - created in other Entra ID tenants and invited to your tenant (more on that later in this chapter)
+- Cloud Identities - Created directly in Entra ID either via the portal graphical interface or programmatically as part of a scripted job
+- Synchronised Identities - Created in Azure by AD Connect - the WS AD synchronisation tool, which we will cover in the next chapter
+- Guest Users - Created in other Entra ID tenants and invited to your tenant (more on that later in this chapter)
 
 
 *Pro Tip - when you delete a user in Entra ID, it is only soft-deleted and stays in the "bin" for 30 days. This feature allows you to recover an account deleted by mistake quickly. I've come to appreciate this option more than I'd like*
@@ -153,28 +153,28 @@ Until now, you've been logged into Azure with the default administrator account 
 Unfortunately, it's possible to find yourself in a situation where everyone with administrative permissions in the Azure platform is either unavailable or unable to access it. That is why we always create emergency break-glass accounts that can be used in times of turbulence. That will be our next step.
 
 1. If you're not logged into the Azure Portal, please do so. 
- - Be sure to use the new Microsoft Account you created while signing up for Azure.
+    - Be sure to use the new Microsoft Account you created while signing up for Azure.
 2. Find Entra ID in the Portal Menu and navigate to the Users section. Take your time to explore.
 
 *Important - You will probably notice that the user account, created by default, looks strange. It is an external account, even though it is marked as a Member account rather than a Guest. Typically, only Guest Accounts have the #EXT# part in their UPN. It is a unique situation caused by the fact that your brand-new Microsoft account was used to give you access to the Entra ID tenant.* 
 
 3. Create two new accounts in your Entra ID tenant.
- - Use names that are easy to recognise, like emergency1 and emergency2.
- - Once created, rotate the default passwords Azure generated upon creation. 
+    - Use names that are easy to recognise, like emergency1 and emergency2.
+    - Once created, rotate the default passwords Azure generated upon creation. 
 
 *Pro Tip! - When learning using a disposable environment, you don't need to worry too much about passwords. However, in a real-life scenario, you should always use strong passwords for the break-glass accounts. I recommend at least 128 characters (the maximum is 256) and storing the passwords as two halves in separate locations. For example, the left side is in a virtual vault, and the right is in a safe.* 
 
 ### Groups
 
-![Entra ID Groups](Images/EntraGroups.png)
+![Entra ID Groups](Images/azureAdGroups.png)
 
 When it comes to Groups, in Entra ID, we have two options:
-- **Security** manages user and computer access to shared resources. Owners can consist of users and service principals. Members can include users, devices, other groups, and service principals.
+- **Security**: manages user and computer access to shared resources. Owners can consist of users and service principals. Members can include users, devices, other groups, and service principals.
 
-- **Microsoft 365** provides collaboration opportunities by giving group members access to a shared mailbox, calendar, files, SharePoint sites, and more. It lets you provide people outside of your organization access to the group. Members can only include users. Owners can consist of users and service principals. 
+- **Microsoft 365**: provides collaboration opportunities by giving group members access to a shared mailbox, calendar, files, SharePoint sites, and more. It lets you provide people outside of your organization access to the group. Members can only include users. Owners can consist of users and service principals. 
 
 But next to that, we have several assignment options:
-- **Static** - in which you manually (or statically) assign group membership.
+- **Assigned** - in which you manually (or statically) assign group membership.
 - **Dynamic** - in which the platform automatically assigns group membership for users or devices based on their attributes.
 
 *Important - a dynamically assigned group can include only user objects or only devices, never both.* 
@@ -205,7 +205,7 @@ In Azure, we use different mechanisms. We will look at them in the following sec
 
 ### Service Principals
 
-![Entra ID App Registrations](Images/EntraAppRegistrations.png)
+![Entra ID App Registrations](Images/azureAdAppRegistrations.png)
 
 The first option is to use Service Principals (SPNs), which you can find in the Azure portal under App Registrations. An SPN is an Entra ID identity that an application (can be external) will use to authenticate to Azure resources. The authentication can use a secret (password) or a certificate.
 
@@ -263,7 +263,7 @@ In the example above, I talk about one Entra ID tenant inviting users from anoth
 
 Azure also offers a business-to-customer service used to manage end-customer identities and their access to your applications. 
 
-When using Extrenal Entra ID, we create a seprate, use case-specific directory which can authenticate and authorise end users. 
+When using External Entra ID, we create a separate, use case-specific directory which can authenticate and authorise end users. 
 
 Entra External ID offers a wide range of handy features like:
 - Support for various identity providers (e.g., Google, Facebook, LinkedIn, or other Azure AD tenants).
@@ -297,26 +297,26 @@ The main difference lies in the scope - while Azure can have an elaborate manage
 
 ### Role Definitions
 
-![Entra ID RBAC](Images/AzureAdRbac.png)
+![Entra ID RBAC](Images/azureAdRbac.png)
 
 Because Entra ID is used for all cloud-based services offered by Microsoft, not just Azure, it has a long list of built-in role definitions. Most of those you will probably never need, but some are worth taking a closer look at:
 
 1. Global Administrator can:
- - Manage access to all administrative features in Entra ID, as well as services that federate to Entra ID
- - Assign administrator roles to others
- - Reset the password for any user and all other administrators
+ - Manage access to all administrative features in Entra ID, as well as services that federate to Entra ID.
+ - Assign administrator roles to others.
+ - Reset the password for any user and all other administrators.
 
 2. User Administrator can:
- - Create and manage all aspects of users and groups
- - Manage support tickets
- - Monitor service health
- - Change passwords for users, Helpdesk administrators, and other User Administrators
+ - Create and manage all aspects of users and groups.
+ - Manage support tickets.
+ - Monitor service health.
+ - Change passwords for users, Helpdesk administrators, and other User Administrators.
 
 3. Billing Administrator can:
- - Make purchases
- - Manage subscriptions
- - Manage support tickets
- - Monitor service health
+ - Make purchases.
+ - Manage subscriptions.
+ - Manage support tickets.
+ - Monitor service health.
 
 Apart from those three, I highly recommend that you check out GlobalReader, Groups Administrator, Application Administrator, and Security Administrator in the [official docs from Microsoft](https://learn.microsoft.com/en-us/azure/active-directory/roles/permissions-reference)
 
@@ -327,9 +327,9 @@ Apart from those three, I highly recommend that you check out GlobalReader, Grou
 In the previous exercises, you created and possibly invited additional Entra ID Accounts to your new directory, but we never assigned any permissions to those identities. Those accounts cannot perform administrative tasks without an Entra ID RBAC assignment. Let's fix that!
 
 1. Go back to the Azure Portal
-2. Use the Entra ID blate to:
+2. Use the Entra ID blade to:
     - Assign the "Global Administrator" permissions directly to the break-glass accounts you created in exercise 1.2.1
-   - Assign the "Global Administrator" permissions to the Administrators group you created in exercise 1.2.2
+    - Assign the "Global Administrator" permissions to the Administrators group you created in exercise 1.2.2
 
 With that, all your administrative user accounts should have the correct permissions. 
 
@@ -356,25 +356,25 @@ Finally, we will dive into some security features Entra ID offers. We won't cove
 
 ### Conditional Access
 
-![Entra ID Conditional Access](Images/EntraConditionalAccess.png)
+![Entra ID Conditional Access](Images/azureAdConditionalAccess.png)
 
 One of the fundamental security features of Entra ID is Conditional Access. The feature analyses various signals to automate decisions and enforce organisational access policies.
 
 The signals include, but are not limited to, the following:
-- user identity and group membership,
-- device platform,
-- location,
-- sign-in risk,
-- client application.
+- User identity and group membership.
+- Device platform.
+- Location.
+- Sign-in risk.
+- Client application.
 
-Conditional Access policies are like if-then statements allowing or blocking access, enforcing multi-factor authentication, or restricting the user's session. 
+Conditional Access policies are like if-then statements allowing or blocking access, enforcing multifactor authentication, or restricting the user's session. 
 You can create up to 195 policies in every Entra ID tenant but try to keep the number as low as possible and pay attention to how you name them. Reviewing a long list of configurations will make troubleshooting a painful experience, but even a short list will cause problems if your naming is inconsistent. Conditional Access configuration is not a place we look often, so in most cases, you'll need to remember the details just a few weeks after you define your settings. Name them well, and your life will be easier!
 
 Remember that Conditional Access will require Entra ID Premium - P1 for most features and P2 for Identity Protection. You will need the Security Administrator or Conditional Access Administrator RBAC role to configure the component. Global Administrator, as always, can do anything. 
 
 When you create a new policy, you can leave the default setting "Report-only" to evaluate its behaviour before you start limiting users' sign-ins. But to ensure the security limitations you configure are in place, you must flip the switch to "On".
 
-![Entra ID Conditional Access Report-Only mode](Images/AzureAdCaReport.png)
+![Entra ID Conditional Access Report-Only mode](Images/azureAdCaReport.png)
 
 Setting up conditional access is one of the first things I recommend configuring in your Entra ID tenant. Start with a simple set to provide a solid security baseline and build on top of that - limiting access to the Azure Management plane and enforcing MFA for all users should be sufficient. Do exclude your break-glass accounts, though!
 
@@ -384,14 +384,14 @@ The best way to learn about Conditional Access policies is to configure them you
 
 1. Make sure you're logged into the Azure Portal.
 2. Enable a free trial of the premium features on your Azure tenant.
-    - Check the Licenses tab under Entra ID,
-    - Go for Premium P2
-    - Remember to assign the license to your user 
-3. Navigate to the Entra ID blade, Security tab and there you will find Conditional Access
+    - Check the Licenses tab under Entra ID.
+    - Go for Premium P2.
+    - Remember to assign the license to your user. 
+3. Navigate to the Entra ID blade, Security tab and there you will find Conditional Access.
 4. Create three new Conditional Access policies:
     - Block access to the "Microsoft Azure Management" application from anywhere except your office/home public IP address.
     - Allow access for all users to all applications, but enforce Multi-Factor Authentication.
-    - Disable legacy authentication
+    - Disable legacy authentication.
 5. Make sure all policies are on!
 
 *I strongly recommend excluding the break-glass accounts from the first policy. You want to be able to access the Azure Management plane in case of an emergency, and that can include situations in which you don't have access to any of your trusted locations.*
@@ -399,9 +399,9 @@ The best way to learn about Conditional Access policies is to configure them you
 ### Multi-Factor Authentication
 
 Multi-Factor Authentication (MFA) is another fundamental security feature of Entra ID. It requires users to verify their identity by providing two or more forms of authentication. Those forms include the following:
-- something you know, like your account password
-- something you are, like your fingerprint or face/eye scan
-- something you have, like a security key or your smartphone
+- Something you know, like your account password
+- Something you are, like your fingerprint or face/eye scan
+- Something you have, like a security key or your smartphone
 
 The MFA service provided by Entra ID supports the following forms of additional verification:
 - Microsoft Authenticator
@@ -412,11 +412,11 @@ The MFA service provided by Entra ID supports the following forms of additional 
 - SMS
 - Voice call
 
-For a long time, MFA settigs were managed primarilly using the "Per-User MFA authentication" settings as part of a legacy interface for configuring MFA settings. That standalone site was recently deprecated and we now manage MFA settings via an integrated experience. If you sill have any legacy MFA policies, you shoud migrate them to the new experience. The details of the migration are described [here](https://learn.microsoft.com/en-gb/azure/active-directory/authentication/how-to-authentication-methods-manage).
+For a long time, MFA settings were managed primarily using the "Per-User MFA authentication" settings as part of a legacy interface for configuring MFA settings. That standalone site was recently deprecated and we now manage MFA settings via an integrated experience. If you sill have any legacy MFA policies, you should migrate them to the new experience. The details of the migration are described [here](https://learn.microsoft.com/en-gb/azure/active-directory/authentication/how-to-authentication-methods-manage).
 
-![MFA Configuration Options](Images/AzureAdMfa.png)
+![MFA Configuration Options](Images/azureAdMfa.png)
 
-Multi-factor authentication is a relatively simple yet potent protection mechanism. A common saying reminds us that "identity is the new perimeter", and enforcing MFA is the best thing we can do to help secure users in your organisation.
+Multi-Factor Authentication is a relatively simple yet potent protection mechanism. A common saying reminds us that "identity is the new perimeter", and enforcing MFA is the best thing we can do to help secure users in your organisation.
 
 ### Identity Protection
 
@@ -425,13 +425,13 @@ Multi-factor authentication is a relatively simple yet potent protection mechani
 Entra ID Identity Protection is a security service that detects potential vulnerabilities in your organisation's identities. It uses existing anomaly-detection capabilities and introduces new risk-detection types based on Microsoft's experience in Entra ID, Microsoft Accounts, and Xbox. Trillions of signals are analysed daily to identify and protect customers from threats.
 
 Identity Protection's signals can be used with Conditional Access or a security information and event management tool. It detects risks like:
-- anonymous IP address use,
-- atypical travel,
-- malware-linked IP address,
-- unfamiliar sign-in properties,
-- leaked credentials,
-- password spray,
-- and others.
+- Anonymous IP address use.
+- Atypical travel.
+- Malware-linked IP address.
+- Unfamiliar sign-in properties.
+- Leaked credentials.
+- Password spray.
+- And others.
 
 ### Access Reviews
 
@@ -443,28 +443,28 @@ For specific resources, it might be required as part of compliance processes to 
 
 Depending on the access you want to verify, you will want to use a different service/feature:
 
-| Access rights of users | Reviewers can be | Review created in | Reviewer experience |
-|------------------------|------------------|-------------------|---------------------|
-| Security group members<br>Office group members | Specified reviewers<br>Group owners<br>Self-review | access reviews<br>Entra ID groups | Access panel |
-| Assigned to a connected app | Specified reviewers<br>Self-review | access reviews<br>Entra ID enterprise apps (in preview) | Access panel |
-| Entra ID role | Specified reviewers<br>Self-review | PIM | Azure portal |
-| Azure resource role | Specified reviewers<br>Self-review | PIM | Azure portal |
-| Access package assignments | Specified reviewers<br>Group members<br>Self-review | entitlement management | Access panel |
+| Access rights of users | Reviewers can be | Review created in                                       | Reviewer experience |
+|------------------------|------------------|---------------------------------------------------------|---------------------|
+| Security group members<br>Office group members | Specified reviewers<br>Group owners<br>Self-review | Access reviews<br>Entra ID groups                       | Access panel |
+| Assigned to a connected app | Specified reviewers<br>Self-review | Access reviews<br>Entra ID enterprise apps (in preview) | Access panel |
+| Entra ID role | Specified reviewers<br>Self-review | PIM                                                     | Azure portal |
+| Azure resource role | Specified reviewers<br>Self-review | PIM                                                     | Azure portal |
+| Access package assignments | Specified reviewers<br>Group members<br>Self-review | Entitlement management                                  | Access panel |
 
 ### Security Defaults
 Every new Entra ID tenant is preconfigured with security defaults to make things easier for customers. It's a great starting point, but there are a few critical yet inconspicuous details. Let's take a look at Microsoft's description:
 
 
 >Security defaults make it easier to help protect your organisation from these identity-related attacks with preconfigured security settings:
->- Requiring all users to register for Entra ID Multifactor Authentication.
->- Requiring administrators to do multifactor authentication.
->- Requiring users to do multifactor authentication when necessary.
+>- Requiring all users to register for Entra ID Multi-factor Authentication.
+>- Requiring administrators to do multi-factor authentication.
+>- Requiring users to do multi-factor authentication when necessary.
 >- Blocking legacy authentication protocols.
 >- Protecting privileged activities like access to the Azure portal.
 
 If you read it carefully, you'll notice that all users must register for MFA, but only administrators will be challenged with a second factor upon every sign-in. Non-administrator users must only respond to an MFA challenge when necessary. However, the documentation is very vague about the circumstances that define the necessity. 
 
->Entra ID decides when a user will be prompted for multifactor authentication, based on factors such as location, device, role and task.
+>Entra ID decides when a user will be prompted for multi-factor authentication, based on factors such as location, device, role and task.
 
 Therefore, getting a false sense of safety regarding the MFA configuration provided by the security defaults is relatively easy. Multi-Factor Authentication, in the most functional form, is only available with Entra ID Premium.
 
@@ -478,21 +478,21 @@ While I appreciate the security defaults as built-in protection, I need more. I 
     - Allow access for all users to all applications, but enforce Multi-Factor Authentication (exclude the break-glass accounts).
     - Disable legacy authentication protocols.
 - Configure the following Entra ID User Settings:
-    - Set 'User can register applications' to No
-    - Set 'Restrict non-admin users from creating tenants' to No
-    - Set 'Restrict access to Entra ID Administration portal' to yes
-    - Set 'Allow users to connect their work or school account with LinkedIn' to No
+    - Set 'User can register applications' to No.
+    - Set 'Restrict non-admin users from creating tenants' to No.
+    - Set 'Restrict access to Entra ID Administration portal' to Yes.
+    - Set 'Allow users to connect their work or school account with LinkedIn' to No.
 - Configure the Entra ID User Settings External collaboration Settings:
-    - Set 'Guest user access restrictions' to 'Guest users have limited access to properties and memberships of directory objects' 
-    - Set 'Guest invite restrictions'  to 'Only users assigned to specific admin roles can invite guest users 
-    - Set 'Enable guest self-service sign up via user flows' to NO
-    - Set 'Allow external users to remove themselves from your organisation to Yes
+    - Set 'Guest user access restrictions' to 'Guest users have limited access to properties and memberships of directory objects'.
+    - Set 'Guest invite restrictions'  to 'Only users assigned to specific admin roles can invite guest users.
+    - Set 'Enable guest self-service sign up via user flows' to No.
+    - Set 'Allow external users to remove themselves from your organisation to Yes.
     - Set 'Collaboration restrictions' to 'Allow invitation only to the specified domains (most restrictive) ' and, if needed, and only the desired target domains.
 
 ### Exercise 1.2.7
 
 You already covered the first part of the list above in the previous exercise - to configure the Conditional Access policies, you had to get the premium licenses and disable the security defaults. But there are still a few things to tweak:
-1. Configure the Entra ID User Settings from the list above
-2. Configure the Entra ID User Settings External collaboration Settings from the list above
+1. Configure the Entra ID User Settings from the list above.
+2. Configure the Entra ID User Settings External collaboration Settings from the list above.
 
-[<  1.1 Azure Governance](./azureGovernance.md) | [Home - Course Contents](../Contents.md) |  [1.3 - Hybrid Identity >](./hybridIdentity.md))
+[<  1.1 Azure Governance](./azureGovernance.md) | [Home - Course Contents](../Contents.md) |  [1.3 - Hybrid Identity >](./hybridIdentity.md)

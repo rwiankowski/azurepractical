@@ -17,7 +17,7 @@ The Virtual Network, or the VNET in short, is what we use to create a private de
 
 IP address allocation, switching, routing, DNS, and a default Internet breakout for VMs are all provided out-of-the-box and don't require additional setup. Still, operators can configure those settings to meet their requirements. In a way, the VNET is like the device we get from a home Internet provider - all we need to do is connect the copper/fibre cable and power it on - we'll be ready to browse the online Azure documentation within a few minutes. 
 
-*IMPORTANT - the default outbound Internet access for Azure VMs will be retired on Septerber 30th 2025. Please see the [official announcement](https://azure.microsoft.com/en-us/updates/default-outbound-access-for-vms-in-azure-will-be-retired-transition-to-a-new-method-of-internet-access/) for details.*
+*IMPORTANT - the default outbound Internet access for Azure VMs will be retired on September 30th 2025. Please see the [official announcement](https://azure.microsoft.com/en-us/updates/default-outbound-access-for-vms-in-azure-will-be-retired-transition-to-a-new-method-of-internet-access/) for details.*
 
 The Virtual Network is a free resource which does not have a monthly cost associated with it, but data egressing from your Azure VNET will be billed. Ingress is free.
 
