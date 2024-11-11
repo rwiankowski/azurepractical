@@ -5,7 +5,7 @@ In the first part of the training, we will cover some fundamentals to ensure you
 
 ## Contents
 
-- [1.1 Azure Governance](./azureGovernance.mdazureGovernance.md)
+- [1.1 Azure Governance](./azureGovernance.md)
     - What is Azure
     - Buying Azure
     - Structure of Azure
