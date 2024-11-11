@@ -30,7 +30,7 @@ The table below describes the options we have to procure Azure Subscriptions.
 |---------|-------|-------|-----------|
 | - | Free | Complimentaty account | 200$ USD credits for 30 days + limited free access for 12 months |
 | PAYG | Pay-As-You-Go | Sign-up online with a Credit Card | None, publicly availabile list prices apply |
-| CSP | [Cloud Solutions Provider](https://learn.microsoft.com/en-us/partner-center/csp-overview) | Buy via a Microsoft Partner | Negotiated with the CSP partner, typicvally limited |
+| CSP | [Cloud Solutions Provider](https://learn.microsoft.com/en-us/partner-center/csp-overview) | Buy via a Microsoft Partner | Negotiated with the CSP partner, typically limited |
 | EA | [Enterprise Account](https://www.microsoft.com/en-us/licensing/licensing-programs/enterprise) | Buy directly from Microsoft via the volume licensing program previously used for software liceses | Negotiated with Mictosoft and based on the total value of the commitment, can be significant |
 
 There are also specific programs and incentives for educational use. For example, the Student subscription gives 100 USD for 12 months.
