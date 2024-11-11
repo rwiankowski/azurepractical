@@ -56,7 +56,7 @@ The domain name must be globally unique because ADD is a multitenant SaaS offeri
 
 The built-in domain name will always be there with you, but you can also add a custom domain name to make your Accounts' User Principal Names (UPNs) more user-friendly.
 
-![Configure Custom Domain](Images/EntraCustomDomain.png)
+![Configure Custom Domain](Images/AzureADCustomDomain.png)
 
 The process of configuring a custom domain name is relatively simple and quick. It includes the following steps:
 - Register a publicly-resolvable domain with a registrar of your choice
@@ -64,7 +64,7 @@ The process of configuring a custom domain name is relatively simple and quick. 
 - Create the verification records in your domain's lookup zone (Azure will ask you to create a specific TXT or MX record to verify ownership of the custom name)
 - Wait for the DNS change to propagate and complete the process
 
-![Verify Custom Domain](Images/EntraCustomDomainVerify.png)
+![Verify Custom Domain](Images/azureAdCustomDomainVerify.png)
 
 ### Entra ID vs. AD
 
@@ -166,7 +166,7 @@ Unfortunately, it's possible to find yourself in a situation where everyone with
 
 ### Groups
 
-![Entra ID Groups](Images/EntraGroups.png)
+![Entra ID Groups](Images/azureADroups.png)
 
 When it comes to Groups, in Entra ID, we have two options:
 - **Security** manages user and computer access to shared resources. Owners can consist of users and service principals. Members can include users, devices, other groups, and service principals.
@@ -205,7 +205,7 @@ In Azure, we use different mechanisms. We will look at them in the following sec
 
 ### Service Principals
 
-![Entra ID App Registrations](Images/EntraAppRegistrations.png)
+![Entra ID App Registrations](Images/azureADAppRegistrations.png)
 
 The first option is to use Service Principals (SPNs), which you can find in the Azure portal under App Registrations. An SPN is an Entra ID identity that an application (can be external) will use to authenticate to Azure resources. The authentication can use a secret (password) or a certificate.
 
@@ -356,7 +356,7 @@ Finally, we will dive into some security features Entra ID offers. We won't cove
 
 ### Conditional Access
 
-![Entra ID Conditional Access](Images/EntraConditionalAccess.png)
+![Entra ID Conditional Access](Images/azureAdConditionalAccess.png)
 
 One of the fundamental security features of Entra ID is Conditional Access. The feature analyses various signals to automate decisions and enforce organisational access policies.
 

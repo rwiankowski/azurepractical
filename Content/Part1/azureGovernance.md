@@ -217,4 +217,4 @@ My favourite examples of how to use tags focus on automation:
 - configuring backup strategies. 
 
 
-[< Part 1 Index](./partOneIndex.md) | [Home - Course Contents](../Contents.md) |  [1.2 - Azure Governance >](./entraId.md))
+[< Part 1 Index](./partOneIndex.md) | [Home - Course Contents](../Contents.md) |  [1.2 - Entra ID >](./entraId.md)
