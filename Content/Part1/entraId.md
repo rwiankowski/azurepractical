@@ -166,7 +166,7 @@ Unfortunately, it's possible to find yourself in a situation where everyone with
 
 ### Groups
 
-![Entra ID Groups](Images/azureADroups.png)
+![Entra ID Groups](Images/azureADGroups.png)
 
 When it comes to Groups, in Entra ID, we have two options:
 - **Security** manages user and computer access to shared resources. Owners can consist of users and service principals. Members can include users, devices, other groups, and service principals.
