@@ -42,7 +42,7 @@ To manage Azure and EntraID, we need to install the required modules:
 
 ```
 ➜ Install-Module Az
-➜ Install-Module Entra ID
+➜ Install-Module Microsoft.Graph
 ```
 
 And connect ourselves to the management plane:
