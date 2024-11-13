@@ -17,4 +17,4 @@
     - Azure Virtual WAN
 
 
-[< 2.3 - Highly Available Deployments](../Part2/highlyAvailableDeployments.md)] | [Home - Course Contents](../Contents.md) |  [3.1 - Multi-Network Environments >](./azureVirtualNetworks.md)
+[< 2.3 - Highly Available Deployments](../Part2/highlyAvailableDeployments.md)] | [Home - Course Contents](../Contents.md) |  [3.1 - Multi-Network Environments >](./multiNetworkEnvironments.md)
