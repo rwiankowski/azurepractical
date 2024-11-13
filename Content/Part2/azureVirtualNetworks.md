@@ -25,10 +25,10 @@ The Virtual Network is a free resource which does not have a monthly cost associ
 
 Imagine that your company, Contoso, wants to start using that amazing Azure environment that you started setting up for them. One of the development teams is working on a new, ground-breaking application called App1 which has a straightforward architecture - just a Web Front End Server and a File Server. They asked you set up the environment. To get going, we will deploy a Virtual Network.
 
-1) Create a new Resource Group.
+1. Create a new Resource Group.
     - You can call it whatever you like, but I will keep referring to it as App1-Network-RG.
 
-2) Deploy a new Virtual Network.
+2. Deploy a new Virtual Network.
     - Deploy it to your new Resource Group, i.e. App1-Network-RG.
     - Use whatever name you like, but I will keep referring to it as App1-Vnet.
     - Use whatever IP rage you like
@@ -41,14 +41,14 @@ Imagine that your company, Contoso, wants to start using that amazing Azure envi
 
 Having a VNET is all nice, but by default, it's not really secure. Let's add some, at least basic, ACLs.
 
-1) Create a new Network Security Group for the WebFrontEndSubnet.
+1. Create a new Network Security Group for the WebFrontEndSubnet.
     - Call it what you want, but I will refer to it as App1-FrontEnd-NSG
     - Make sure that the only allowed traffic is:
         - Inbound - HTTP from the internet, RDP from the FileStoreSubnet
         - Outbound - HTTP and HTTPS towards the Internet
     - Be sure to associate it with the correct subnet
 
-2) Create another Network Security Group for the FileStoreSubnet.
+2. Create another Network Security Group for the FileStoreSubnet.
     - Call it what you want, but I will refer to it as App1-FileStore-NSG
     - Make sure that the only allowed traffic is:
         - Inbound - RDP from your home IP and your office IP
@@ -61,7 +61,7 @@ Having a VNET is all nice, but by default, it's not really secure. Let's add som
 
 Let us now deploy a Private DNS zone which the developers of App1 can use for internal name resolution.
 
-1) Create a new Private DNS Zone
+1. Create a new Private DNS Zone
     - Pick any name you like, i.e. app1.internal.
     - Link the new DNS Zone to your VNET.
     - Be sure to enable auto-registration.
