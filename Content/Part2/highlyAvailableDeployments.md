@@ -107,5 +107,8 @@ To take things even further, we will now replace the VMs with a VM Scale Set.
     - systemctl enable nginx
     ```
 
+4. Update the Configuration of the Load Balancer created in excercise 2.3.1
+    - Remove the (now non-existent) VMs from the backed configuration
+    - Add the newly-created VM Scale Set as the backend of the Load Balancer
 
 [< 2.2 - Azure Virtual Machines](./azureVirtualMachines.md) | [Home - Course Contents](../Contents.md) |  [ Part 3 - Multi-Network Environments >](../Part3/partThreeIndex.md)

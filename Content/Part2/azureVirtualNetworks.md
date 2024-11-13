@@ -3,6 +3,7 @@
 In this section we will cover the following topics:
 - Virtual Network Basics
 - Controlling Network Access
+- NAT Gateways and Rute Tables
 - Private DNS
 
 ## Virtual Network Basics
