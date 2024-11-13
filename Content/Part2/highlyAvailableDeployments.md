@@ -46,7 +46,15 @@ In this exercise, we will try to create a new, more advanced deployment.
     - Use Cloud Shell to run the script provided below:
 
     ```PowerShell
-    Set-AzVMExtension -ResourceGroupName "test-radek" -ExtensionName "IIS" -VMName "testradek" -Location "SwedenCentral" -Publisher Microsoft.Compute -ExtensionType CustomScriptExtension -TypeHandlerVersion 1.8 -SettingString '{"commandToExecute":"powershell Add-WindowsFeature Web-Server; powershell Add-Content -Path \"C:\\inetpub\\wwwroot\\Default.htm\" -Value $($env:computername)"}'
+    Set-AzVMExtension `
+        -ResourceGroupName "FillMeIn" `
+        -ExtensionName "IIS"`
+        -VMName "FillMeIn" `
+        -Location "FillMeIn" `
+        -Publisher Microsoft.Compute `
+        -ExtensionType CustomScriptExtension `
+        -TypeHandlerVersion 1.8 `
+        -SettingString '{"commandToExecute":"powershell Add-WindowsFeature Web-Server; powershell Add-Content -Path \"C:\\inetpub\\wwwroot\\Default.htm\" -Value $($env:computername)"}'
     ```
 
 7) Deploy a Load Balancer 
