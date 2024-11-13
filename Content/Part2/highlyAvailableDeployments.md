@@ -20,7 +20,7 @@ In this exercise, we will try to create a new, more advanced deployment.
     - Deploy it to your new Resource Group, i.e. App2-Network-RG.
     - Use whatever name you like, but I will keep referring to it as App2-vnet.
     - Use an IP range you like, but make sure it's unique within your environment. Use a /16 prefix.
-    - Create one subnet - WebServerSubnet
+    - Create one subnet - WebServerSubnet.
     - Do not deploy any advanced features.
 
 3) Create a new Network Security Group.
