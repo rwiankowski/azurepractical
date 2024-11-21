@@ -1,34 +1,18 @@
-# Part 5 - Storage and Data
+# Part 5 - The Full Potential of Managed Services
 
 ## Introduction
 
 ## Contents
 
-- [4.1 Runni](./storageAccounts.md)
-    - Storage Accounts Basics
-    - BLOB Storage
-    - Storage Security
-    - Managing Storage
-    - Azure Files
-    - Table Storage
+- [5.1 Web Aplications and Functions](./webAppsFunctions.md)
+    - App Service
+    - Function Apps
+    - Logic Apps
+    - Application Load Balancers and CDN
 
-- [4.2 Databases](./databases.md)
-    - Azure SQL
-    - Cosmos DB
+- [5.2 Running Containers in Azure](./containers.md)
+    - Container Instances
+    - Azure Kubernetes Service
+    - Container Registry
 
-- [4.3 Integrating Applications](./integratingApplications.md)
-    - Service Bus
-    - Event Hub
-    - Event Grid
-    - Redis
-    - API Management
-
-- [4.4 Data Platforms in Azure](./dataPlatforms.md)
-    - Azure Data Lake
-    - Azure Data Factory
-    - Azure Synapse Analytics
-    - AZure Databricks
-    - Azure Stream Analytics
-    - IoT    
-
-[< 3.3 - Integrated Network Services](./integratedNetworkServices.md) | [Home - Course Contents](../Contents.md) |  [4.1 - Storage Accounts >](./storageAccounts.md)
+[< 4.4 - Data Platforms in Azure](./dataPlatforms.md) | [Home - Course Contents](../Contents.md) |  [5.1 - Storage Accounts >](./webAppsFunctions.md)

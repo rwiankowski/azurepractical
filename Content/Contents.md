@@ -7,10 +7,8 @@
 * [Running Basic Infrastructure in Azure](./Part2/partTwoIndex.md)
 * [Inter-site Topologies](./Part3/partThreeIndex.md)
 * [Storage and Data](./Part4/partFourIndex.md)
-* Using the full potential of Managed Services
+* [The Full Potential of Managed Services](./Part5/partFiveIndex.md)
 * Managing the Sprawling Azure Environment
-* Migrating to Azure (3h)
-
 
 ## How to structure your learning
 
