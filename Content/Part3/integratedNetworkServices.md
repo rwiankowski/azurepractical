@@ -19,4 +19,4 @@ In this section we will cover the following topics:
 - Connect the Remote VNET using an IPSEC VPN tunnel
 - Test!
 
-[< 3.2 - Hybrid Networks](./hybridNetworks.md) | [Home - Course Contents](../Contents.md) |  [Part 4 >]()
+[< 3.2 - Hybrid Networks](./hybridNetworks.md) | [Home - Course Contents](../Contents.md) |  [Part 4 >](../Part4/partFourIndex.md)

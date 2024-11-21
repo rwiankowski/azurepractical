@@ -4,12 +4,13 @@
 
 * [How to Prepare](./Prepare.md)
 * [Getting Started with Azure (6h)](./Part1/partOneIndex.md)
-* [Running Basic Infrastructure in Azure](./Part2/partTwoIndex.md)(6h)
-* [Advanced Topologies](./Part3/partThreeIndex.md) (6h)
-* Let's talk Storage (6h)
-* Using the full potential of Managed Services (3h)
+* [Running Basic Infrastructure in Azure](./Part2/partTwoIndex.md)
+* [Inter-site Topologies](./Part3/partThreeIndex.md)
+* [Storage and Data](./Part4/partFourIndex.md)
+* Using the full potential of Managed Services
+* Managing the Sprawling Azure Environment
 * Migrating to Azure (3h)
-* Taking our Network all the way to 11 (6+h)
+
 
 ## How to structure your learning
 
