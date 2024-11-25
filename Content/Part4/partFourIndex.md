@@ -11,6 +11,7 @@
     - Managing Storage
     - Azure Files
     - Table Storage
+    - Endpoints
 
 - [4.2 Databases](./databases.md)
     - Azure SQL

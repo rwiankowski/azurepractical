@@ -4,6 +4,7 @@ In this section we will cover the following topics:
 - Container Instances
 - Azure Kubernetes Service
 - Container Registry
+- Container Apps
 
 ## Container Instances
 
@@ -34,6 +35,8 @@ In this section we will cover the following topics:
 ## Azure Kubernetes Service
 
 ## Container Registry
+
+## Container Apps
 
 ### Excercise 5.2.2
 

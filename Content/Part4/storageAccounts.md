@@ -54,6 +54,8 @@ That wide spectrum of option makes the Azure Storage Account a good candidate fo
 
 ## Table Storage
 
+## Endpoints
+
 ### Excercise 4.1.2
 
 *Expect to spend 20 minutes on this excercise*
@@ -69,7 +71,8 @@ Using BLOB containers is fairly straightforward. We have a lot of nice options t
 3. Deploy a Virtual Machine
     - Use Windows Server as the OS.
     - Choose any settings you like, but I recommend a B2mS SKU and a Standard SSD as the perfect blend of price and performance.
-    - Before proceeding, we will adjust the Firewall setting to improve the security of our storage account. Even though there's no anonymous access, and all requests need to authenticate, we don't want strangers knocking on our door.
+
+Before proceeding, we will adjust the Firewall setting to improve the security of our storage account. Even though there's no anonymous access, and all requests need to authenticate, we don't want strangers knocking on our door.
     
 4. Configure VNET access on the Storage Account
 
