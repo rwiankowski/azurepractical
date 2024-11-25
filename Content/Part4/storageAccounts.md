@@ -93,20 +93,20 @@ Before proceeding, we will adjust the Firewall setting to improve the security o
 
 Mounting the File Share directly on the VM  works nice but has a few disadvantages. First and foremost, we needed to use one of our two almighty access keys. Should we ever rotate the keys (and we should do it regularly), we would need to reconfigure the file share. That's not all that optimal. Also, from a network perspective, if we're using an Azure VM, we can configure a secure, private connection, but should we have an on-premises VM, we would need to put in much more effort. Thankfully, there is a really nice service to help with those challenges. It's called Azure File Sync.
     
-1) Clean up some of the old configuration
+1. Clean up some of the old configuration
     - Unmount the file share
     - Remove the subnet from the ACL - leave the Storage Account completely locked from the network perspective
 
-2) Deploy a new VM
+2. Deploy a new VM
     - Use the same settings as previously
 
-3) Configure Azure File Sync
+3. Configure Azure File Sync
     - Create the Azure File Sync Resource
     - Create a Sync Group, use the Storage Account and File Share from the previous excercise
     - Register both VMs by installing the Azure File Sync Agent
     - Add two Server Endpoints to the Sync Group
 
-4) Test
+4. Test
     - Upload and modify some files
     - Observe how the service synchronises your changes
 
