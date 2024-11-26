@@ -38,7 +38,7 @@ In this section we will cover the following topics:
     - Use Linux OS, Code for Publish, and the latest PHP as the runtime stack
 
 7. Deploy a sample application
-    - Fork this repo https://github.com/rwiankowski/php-docs-hello-world/php into your GitHub account (or use something of your own if you have a PHP app for demo purpose)
+    - Fork this repo https://github.com/rwiankowski/php-docs-hello-world into your GitHub account (or use something of your own if you have a PHP app for demo purpose)
     - In your new App Service, create a new Deployment Slot. I will be calling it Staging.
     - In the Staging Slot, use the Deployment Centre to set up continuous deployment from the forked GH repo.
     - Select the "App Service Build Service" (or KUDU) for the build provider

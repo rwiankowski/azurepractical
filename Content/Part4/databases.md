@@ -16,7 +16,7 @@ While we have managed PaaS variants of open-source databases like MySQL and Post
 
 1. Prepare your environment
     - If you haven't cleaned up after working with storage accounts, you can use the same Resource Group and the same Virtual Network.
-    - If you did remove those resources, make sure you have a Resource Group, a VNET with at least one client subnet and Azure Bastion ready./
+    - If you did remove those resources, make sure you have a Resource Group, a VNET with at least one client subnet and Azure Bastion ready.
 
 2. Deploy the VM
     - In the Azure Marketplace, find "Microsoft SQL Server 20xx on Windows 20xx".
@@ -27,7 +27,7 @@ While we have managed PaaS variants of open-source databases like MySQL and Post
 
     - Connect to your new Virtual Machine
     - If you're curious inspect how the MS SQL instance is configured 
-    - Use SQL Management Studio (SSMS) to restore a sample database. I recommend [this one github](https://github.com/microsoft/sql-server-samples/releases/download/wide-world-importers-v1.0/WideWorldImporters-Full.bak)/
+    - Use SQL Management Studio (SSMS) to restore a sample database. I recommend [this one github](https://github.com/microsoft/sql-server-samples/releases/download/wide-world-importers-v1.0/WideWorldImporters-Full.bak)
 
 4. Explore the Azure-specific options
     - In your Resource Group, you should find an additional resource of type "SQL Virtual Machine". Take a closer look at it and explore the options. 
@@ -43,7 +43,7 @@ We will first need to prepare an Azure SQL Server. The server is a logical conta
     - Once it's deployed, enable VNET integration but this time use a Private Endpoint
     - Be sure to add yourself as the Azure AD admin
 
-6) Migrate the sample database to Azure SQL
+6. Migrate the sample database to Azure SQL
     - Go back to your SQL VM and try to migrate the sample database to Azure SQL PaaS.There are multiple ways of doing it. Some are very easy!
 
 ## Cosmos DB
