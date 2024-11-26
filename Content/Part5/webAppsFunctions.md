@@ -80,4 +80,4 @@ In this section we will cover the following topics:
     - If yes, use the extension to deploy the App to the resource you created in step 3
     - Once deployed, find the URL to call your function and test it.
 
-[< Part 5 Index](./partFiveIndex.md) | [Home - Course Contents](../Contents.md) |  [5.2 - Running Containers in Azure >](./webAppsFunctions.md)
+[< Part 5 Index](./partFiveIndex.md) | [Home - Course Contents](../Contents.md) |  [5.2 - Running Containers in Azure >](./containers.md)

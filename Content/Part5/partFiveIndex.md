@@ -15,4 +15,4 @@
     - Azure Kubernetes Service
     - Container Registry
 
-[< 4.4 - Data Platforms in Azure](./dataPlatforms.md) | [Home - Course Contents](../Contents.md) |  [5.1 - Storage Accounts >](./webAppsFunctions.md)
+[< 4.4 - Data Platforms in Azure](./dataPlatforms.md) | [Home - Course Contents](../Contents.md) |  [5.1 - Web Apps and Functions >](./webAppsFunctions.md)
